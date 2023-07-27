@@ -8,11 +8,9 @@ namespace online_shop_backend.tests.Mocks
 {
     public class SampleDiscountRepository : IDiscountRepository
     {
-        private ICollection<Discount> Discounts { get; set; }
-
         public SampleDiscountRepository()
         {
-            this.Discounts = new List<Discount>
+            Discounts = new List<Discount>
             {
                 new Discount
                 {
@@ -48,9 +46,11 @@ namespace online_shop_backend.tests.Mocks
                     StartTime = DateTime.Now,
                     EndTime = DateTime.ParseExact("31/12/2090", "dd/MM/yyyy", null)
                 }
-            };   
+            };
         }
-        
+
+        private ICollection<Discount> Discounts { get; }
+
         public void AddDiscount(Discount discount)
         {
             Discounts.Add(discount);

@@ -15,7 +15,7 @@ namespace online_shop_backend.Controllers
         {
             this.categoriesRepository = categoriesRepository;
         }
-        
+
         [HttpGet]
         public ICollection<Category> Index()
         {

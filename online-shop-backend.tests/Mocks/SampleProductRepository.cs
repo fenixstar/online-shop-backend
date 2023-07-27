@@ -7,11 +7,9 @@ namespace online_shop_backend.tests.Mocks
 {
     public class SampleProductRepository : IProductRepository
     {
-        private ICollection<Product> Products { get; set; }
-
         public SampleProductRepository()
         {
-            this.Products = new List<Product>
+            Products = new List<Product>
             {
                 new Product
                 {
@@ -67,7 +65,9 @@ namespace online_shop_backend.tests.Mocks
                 }
             };
         }
-        
+
+        private ICollection<Product> Products { get; }
+
         public void AddProduct(Product product)
         {
             Products.Add(product);

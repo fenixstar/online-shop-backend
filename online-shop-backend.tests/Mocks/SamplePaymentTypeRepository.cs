@@ -7,11 +7,9 @@ namespace online_shop_backend.tests.Mocks
 {
     public class SamplePaymentTypeRepository : IPaymentTypeRepository
     {
-        private ICollection<PaymentType> PaymentTypes { get; set; }
-
         public SamplePaymentTypeRepository()
         {
-            this.PaymentTypes = new List<PaymentType>
+            PaymentTypes = new List<PaymentType>
             {
                 new PaymentType
                 {
@@ -20,7 +18,9 @@ namespace online_shop_backend.tests.Mocks
                 }
             };
         }
-        
+
+        private ICollection<PaymentType> PaymentTypes { get; }
+
         public void AddPaymentType(PaymentType paymentType)
         {
             PaymentTypes.Add(paymentType);

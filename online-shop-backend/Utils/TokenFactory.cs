@@ -11,7 +11,7 @@ namespace online_shop_backend.Utils
 
             var rng = RandomNumberGenerator.Create();
             rng.GetBytes(randomNum);
-            
+
             return Convert.ToBase64String(randomNum);
         }
     }

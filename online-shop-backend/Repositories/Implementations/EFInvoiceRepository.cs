@@ -8,13 +8,13 @@ namespace online_shop_backend.Repositories.Implementations
 {
     public class EFInvoiceRepository : IInvoiceRepository
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
 
         public EFInvoiceRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
-        
+
         public void AddInvoice(Invoice invoice)
         {
             context.Invoices.Add(invoice);

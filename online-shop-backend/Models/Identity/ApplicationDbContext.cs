@@ -8,9 +8,8 @@ namespace online_shop_backend.Models.Identity
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            
         }
-        
+
         public DbSet<UserDetail> UserDetails { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Producer> Producers { get; set; }
@@ -31,7 +30,7 @@ namespace online_shop_backend.Models.Identity
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
+
             modelBuilder.Entity<UserDetail>().ToTable("user_details");
             modelBuilder.Entity<Product>().ToTable("products");
             modelBuilder.Entity<Producer>().ToTable("producers");

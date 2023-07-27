@@ -8,13 +8,13 @@ namespace online_shop_backend.Repositories.Implementations
 {
     public class EFReviewRepository : IReviewRepository
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
 
         public EFReviewRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
-        
+
         public void AddReview(Review review)
         {
             context.Reviews.Add(review);

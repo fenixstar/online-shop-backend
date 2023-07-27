@@ -17,17 +17,17 @@ namespace online_shop_backend.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderRepository orderRepository;
+        private readonly IPaymentTypeRepository paymentTypeRepository;
         private readonly IProductRepository productRepository;
         private readonly IShippingMethodRepository shippingMethodRepository;
-        private readonly IPaymentTypeRepository paymentTypeRepository;
         private readonly UserManager<ApplicationUser> userManager;
 
         public OrderController(
-                IOrderRepository orderRepository, 
-                IProductRepository productRepository,
-                IShippingMethodRepository shippingMethodRepository,
-                IPaymentTypeRepository paymentTypeRepository,
-                UserManager<ApplicationUser> userManager)
+            IOrderRepository orderRepository,
+            IProductRepository productRepository,
+            IShippingMethodRepository shippingMethodRepository,
+            IPaymentTypeRepository paymentTypeRepository,
+            UserManager<ApplicationUser> userManager)
         {
             this.orderRepository = orderRepository;
             this.productRepository = productRepository;
@@ -42,22 +42,16 @@ namespace online_shop_backend.Controllers
         {
             var order = orderRepository.GetOrder(id);
 
-            if (order == null)
-            {
-                return null;
-            }
-            
+            if (order == null) return null;
+
             order.Details = orderRepository.GetDetailsForOrder(id);
             order.ShippingMethod = shippingMethodRepository.GetShippingMethod(order.ShippingMethodID);
 
-            foreach (var detail in order.Details)
-            {
-                detail.Product = productRepository.GetProduct(detail.ProductID);
-            }
+            foreach (var detail in order.Details) detail.Product = productRepository.GetProduct(detail.ProductID);
 
             return order;
         }
-        
+
         [HttpPost]
         [Authorize]
         public async Task<Order> Index([FromBody] CartDTO cart)
@@ -75,11 +69,8 @@ namespace online_shop_backend.Controllers
 
             foreach (var item in cart.CartItems)
             {
-                if (!productRepository.CheckIfProductIsAvailable(item.ProductID, item.Quantity))
-                {
-                    return null;
-                }
-                
+                if (!productRepository.CheckIfProductIsAvailable(item.ProductID, item.Quantity)) return null;
+
                 orderToAdd.Details.Add(new OrderDetail
                 {
                     ProductID = item.ProductID,
@@ -88,17 +79,17 @@ namespace online_shop_backend.Controllers
                     Product = productRepository.GetProduct(item.ProductID)
                 });
             }
-            
+
             orderRepository.AddOrder(orderToAdd);
 
             foreach (var detail in orderToAdd.Details)
             {
                 var product = detail.Product;
                 product.AvailableQuantity -= detail.Quantity;
-                
+
                 productRepository.UpdateProduct(product);
             }
-            
+
             return orderToAdd;
         }
 
@@ -111,17 +102,11 @@ namespace online_shop_backend.Controllers
 
             var orders = lastOrders.ToList();
             if (orders.Any())
-            {
                 foreach (var order in orders)
-                {
-                    foreach (var detail in orderRepository.GetDetailsForOrder(order.ID))
-                    {
-                        productsToReturn.Add(
-                            productRepository.GetProduct(detail.ProductID));
-                    }
-                }
-            }
-            
+                foreach (var detail in orderRepository.GetDetailsForOrder(order.ID))
+                    productsToReturn.Add(
+                        productRepository.GetProduct(detail.ProductID));
+
             return productsToReturn.Take(4).ToList();
         }
 

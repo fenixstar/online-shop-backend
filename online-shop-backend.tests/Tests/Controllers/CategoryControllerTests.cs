@@ -9,20 +9,20 @@ namespace online_shop_backend.tests.Tests.Controllers
 {
     public class CategoryControllerTests
     {
-        private readonly CategoryController controller;
         private readonly ICategoriesRepository categoriesRepository;
+        private readonly CategoryController controller;
 
         public CategoryControllerTests()
         {
-            this.categoriesRepository = new SampleCategoriesRepository();
-            this.controller = new CategoryController(categoriesRepository);
+            categoriesRepository = new SampleCategoriesRepository();
+            controller = new CategoryController(categoriesRepository);
         }
 
         [Fact]
         public void ReturnsAListOfAllCategories()
         {
             var result = controller.Index();
-            
+
             Assert.Equal(JsonConvert.SerializeObject(categoriesRepository.GetAllCategories()),
                 JsonConvert.SerializeObject(result));
         }
@@ -40,7 +40,7 @@ namespace online_shop_backend.tests.Tests.Controllers
                 Subcategories = categoriesRepository.GetSubcategoriesForCategory(id),
                 Products = categoriesRepository.GetProductsForCategory(id)
             };
-            
+
             Assert.Equal(JsonConvert.SerializeObject(expected),
                 JsonConvert.SerializeObject(result));
         }

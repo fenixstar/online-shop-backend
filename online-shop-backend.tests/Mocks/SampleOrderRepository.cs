@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using online_shop_backend.Models.Entities;
@@ -8,11 +9,9 @@ namespace online_shop_backend.tests.Mocks
 {
     public class SampleOrderRepository : IOrderRepository
     {
-        private ICollection<Order> Orders { get; set; }
-
         public SampleOrderRepository()
         {
-            this.Orders = new List<Order>
+            Orders = new List<Order>
             {
                 new Order
                 {
@@ -53,7 +52,9 @@ namespace online_shop_backend.tests.Mocks
                 }
             };
         }
-        
+
+        private ICollection<Order> Orders { get; }
+
         public void AddOrder(Order order)
         {
             Orders.Add(order);
@@ -82,7 +83,7 @@ namespace online_shop_backend.tests.Mocks
 
         public ICollection<Order> GetOrdersForUser(string userId)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public ApplicationUser GetUserForOrder(long id)

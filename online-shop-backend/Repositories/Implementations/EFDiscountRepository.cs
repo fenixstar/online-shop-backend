@@ -8,13 +8,13 @@ namespace online_shop_backend.Repositories.Implementations
 {
     public class EFDiscountRepository : IDiscountRepository
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
 
         public EFDiscountRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
-        
+
         public void AddDiscount(Discount discount)
         {
             context.Discounts.Add(discount);

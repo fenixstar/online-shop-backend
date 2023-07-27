@@ -7,12 +7,9 @@ namespace online_shop_backend.tests.Mocks
 {
     public class SampleCategoriesRepository : ICategoriesRepository
     {
-        private ICollection<Category> Categories { get; set; }
-        private ICollection<Product> Products { get; set; }
-
         public SampleCategoriesRepository()
         {
-            this.Categories = new List<Category>
+            Categories = new List<Category>
             {
                 new Category
                 {
@@ -55,8 +52,8 @@ namespace online_shop_backend.tests.Mocks
                     }
                 }
             };
-            
-            this.Products = new List<Product>
+
+            Products = new List<Product>
             {
                 new Product
                 {
@@ -80,6 +77,9 @@ namespace online_shop_backend.tests.Mocks
                 }
             };
         }
+
+        private ICollection<Category> Categories { get; }
+        private ICollection<Product> Products { get; }
 
         public void AddCategory(Category category)
         {

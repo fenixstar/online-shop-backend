@@ -1,34 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Michał\\RiderProjects\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj": {}
+    "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend.tests/online-shop-backend.tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Michał\\RiderProjects\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj": {
+    "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend.tests/online-shop-backend.tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Michał\\RiderProjects\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj",
+        "projectUniqueName": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend.tests/online-shop-backend.tests.csproj",
         "projectName": "online-shop-backend.tests",
-        "projectPath": "C:\\Users\\Michał\\RiderProjects\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj",
-        "packagesPath": "C:\\Users\\Michał\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Michał\\RiderProjects\\online-shop-backend\\online-shop-backend.tests\\obj\\",
+        "projectPath": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend.tests/online-shop-backend.tests.csproj",
+        "packagesPath": "/Users/antongavrikov/.nuget/packages/",
+        "outputPath": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend.tests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Michał\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/antongavrikov/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\Michał\\RiderProjects\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj": {
-                "projectPath": "C:\\Users\\Michał\\RiderProjects\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj"
+              "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/online-shop-backend.csproj": {
+                "projectPath": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/online-shop-backend.csproj"
               }
             }
           }
@@ -41,6 +40,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
@@ -73,44 +73,41 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.402/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Michał\\RiderProjects\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj": {
+    "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/online-shop-backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Michał\\RiderProjects\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj",
+        "projectUniqueName": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/online-shop-backend.csproj",
         "projectName": "online-shop-backend",
-        "projectPath": "C:\\Users\\Michał\\RiderProjects\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj",
-        "packagesPath": "C:\\Users\\Michał\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Michał\\RiderProjects\\online-shop-backend\\online-shop-backend\\obj\\",
+        "projectPath": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/online-shop-backend.csproj",
+        "packagesPath": "/Users/antongavrikov/.nuget/packages/",
+        "outputPath": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Michał\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/antongavrikov/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -122,6 +119,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -151,6 +149,18 @@
               "target": "Package",
               "version": "[3.1.2, )"
             },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[5.6.0, )"
@@ -162,7 +172,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -174,7 +185,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.402/RuntimeIdentifierGraph.json"
         }
       }
     }

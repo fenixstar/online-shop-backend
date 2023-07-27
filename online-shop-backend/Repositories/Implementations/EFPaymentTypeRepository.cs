@@ -8,13 +8,13 @@ namespace online_shop_backend.Repositories.Implementations
 {
     public class EFPaymentTypeRepository : IPaymentTypeRepository
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
 
         public EFPaymentTypeRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
-        
+
         public void AddPaymentType(PaymentType paymentType)
         {
             context.PaymentTypes.Add(paymentType);

@@ -8,13 +8,13 @@ namespace online_shop_backend.Repositories.Implementations
 {
     public class EFProducerRepository : IProducerRepository
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
 
         public EFProducerRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
-        
+
         public void AddProducer(Producer producer)
         {
             context.Producers.Add(producer);

@@ -9,15 +9,16 @@ namespace online_shop_backend.Controllers
     [Route("/api/subcategory")]
     public class SubcategoryController : Controller
     {
-        private readonly ISubcategoriesRepository subcategoriesRepository;
         private readonly IProducerRepository producerRepository;
+        private readonly ISubcategoriesRepository subcategoriesRepository;
 
-        public SubcategoryController(ISubcategoriesRepository subcategoriesRepository, IProducerRepository producerRepository)
+        public SubcategoryController(ISubcategoriesRepository subcategoriesRepository,
+            IProducerRepository producerRepository)
         {
             this.subcategoriesRepository = subcategoriesRepository;
             this.producerRepository = producerRepository;
         }
-        
+
         [HttpGet]
         public ICollection<Subcategory> Index()
         {
@@ -34,10 +35,8 @@ namespace online_shop_backend.Controllers
             };
 
             foreach (var product in result.Products)
-            {
                 product.Producer = producerRepository.GetProducer(product.ProducerID);
-            }
-            
+
             return result;
         }
     }

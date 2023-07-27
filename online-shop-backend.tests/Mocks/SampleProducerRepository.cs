@@ -7,11 +7,9 @@ namespace online_shop_backend.tests.Mocks
 {
     public class SampleProducerRepository : IProducerRepository
     {
-        private ICollection<Producer> Producers { get; set; }
-
         public SampleProducerRepository()
         {
-            this.Producers = new List<Producer>
+            Producers = new List<Producer>
             {
                 new Producer
                 {
@@ -53,7 +51,9 @@ namespace online_shop_backend.tests.Mocks
                 }
             };
         }
-        
+
+        private ICollection<Producer> Producers { get; }
+
         public void AddProducer(Producer producer)
         {
             Producers.Add(producer);

@@ -8,13 +8,13 @@ namespace online_shop_backend.Repositories.Implementations
 {
     public class EFUserDetailRepository : IUserDetailRepository
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
 
         public EFUserDetailRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
-        
+
         public void AddUserDetail(UserDetail userDetail)
         {
             context.UserDetails.Add(userDetail);

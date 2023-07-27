@@ -8,13 +8,13 @@ namespace online_shop_backend.Repositories.Implementations
 {
     public class EFSubcategoriesRepository : ISubcategoriesRepository
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
 
         public EFSubcategoriesRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
-        
+
         public void AddSubcategory(Subcategory subcategory)
         {
             context.Subcategories.Add(subcategory);

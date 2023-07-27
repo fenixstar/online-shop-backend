@@ -8,13 +8,13 @@ namespace online_shop_backend.Repositories.Implementations
 {
     public class EFRefreshTokenRepository : IRefreshTokenRepository
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
 
         public EFRefreshTokenRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
-        
+
         public void AddRefreshToken(RefreshToken refreshToken)
         {
             context.RefreshTokens.Add(refreshToken);

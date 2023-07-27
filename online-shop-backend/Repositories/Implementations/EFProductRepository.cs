@@ -8,13 +8,13 @@ namespace online_shop_backend.Repositories.Implementations
 {
     public class EFProductRepository : IProductRepository
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
 
         public EFProductRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
-        
+
         public void AddProduct(Product product)
         {
             context.Products.Add(product);
@@ -66,7 +66,7 @@ namespace online_shop_backend.Repositories.Implementations
 
         public ICollection<Review> GetReviewsForProduct(long id)
         {
-            return context.Reviews.Where(r => r.ProductID == id).ToList(); 
+            return context.Reviews.Where(r => r.ProductID == id).ToList();
         }
 
         public ICollection<Discount> GetDiscountsForProduct(long id)

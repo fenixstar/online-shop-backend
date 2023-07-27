@@ -7,12 +7,9 @@ namespace online_shop_backend.tests.Mocks
 {
     public class SampleSubcategoriesRepository : ISubcategoriesRepository
     {
-        private ICollection<Subcategory> Subcategories { get; set; }
-        private ICollection<Product> Products { get; set; }
-
         public SampleSubcategoriesRepository()
         {
-            this.Subcategories = new List<Subcategory>
+            Subcategories = new List<Subcategory>
             {
                 new Subcategory
                 {
@@ -35,10 +32,10 @@ namespace online_shop_backend.tests.Mocks
                         ID = 2,
                         Name = "Cat2"
                     }
-                },
+                }
             };
-            
-            this.Products = new List<Product>
+
+            Products = new List<Product>
             {
                 new Product
                 {
@@ -62,7 +59,10 @@ namespace online_shop_backend.tests.Mocks
                 }
             };
         }
-        
+
+        private ICollection<Subcategory> Subcategories { get; }
+        private ICollection<Product> Products { get; }
+
         public void AddSubcategory(Subcategory subcategory)
         {
             Subcategories.Add(subcategory);

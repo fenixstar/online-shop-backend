@@ -8,13 +8,13 @@ namespace online_shop_backend.Repositories.Implementations
 {
     public class EFShippingMethodRepository : IShippingMethodRepository
     {
-        private ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
 
         public EFShippingMethodRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
-        
+
         public void AddShippingMethod(ShippingMethod shippingMethod)
         {
             context.ShippingMethods.Add(shippingMethod);
