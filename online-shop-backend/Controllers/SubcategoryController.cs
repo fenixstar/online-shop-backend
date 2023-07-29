@@ -4,41 +4,38 @@ using online_shop_backend.Models.DTO;
 using online_shop_backend.Models.Entities;
 using online_shop_backend.Repositories.Interfaces;
 
-namespace online_shop_backend.Controllers
+namespace online_shop_backend.Controllers;
+
+[Route("/api/subcategory")]
+public class SubcategoryController : Controller
 {
-    [Route("/api/subcategory")]
-    public class SubcategoryController : Controller
+    private readonly IProducerRepository producerRepository;
+    private readonly ISubcategoriesRepository subcategoriesRepository;
+
+    public SubcategoryController(ISubcategoriesRepository subcategoriesRepository,
+        IProducerRepository producerRepository)
     {
-        private readonly ISubcategoriesRepository subcategoriesRepository;
-        private readonly IProducerRepository producerRepository;
+        this.subcategoriesRepository = subcategoriesRepository;
+        this.producerRepository = producerRepository;
+    }
 
-        public SubcategoryController(ISubcategoriesRepository subcategoriesRepository, IProducerRepository producerRepository)
-        {
-            this.subcategoriesRepository = subcategoriesRepository;
-            this.producerRepository = producerRepository;
-        }
-        
-        [HttpGet]
-        public ICollection<Subcategory> Index()
-        {
-            return subcategoriesRepository.GetAllSubcategories();
-        }
+    [HttpGet]
+    public ICollection<Subcategory> Index()
+    {
+        return subcategoriesRepository.GetAllSubcategories();
+    }
 
-        [HttpGet("{id:required}")]
-        public SubcategoryPageDTO Subcategory(int id, int? page, int? limit)
+    [HttpGet("{id:required}")]
+    public SubcategoryPageDTO Subcategory(int id, int? page, int? limit)
+    {
+        var result = new SubcategoryPageDTO
         {
-            var result = new SubcategoryPageDTO
-            {
-                Subcategory = subcategoriesRepository.GetSubcategory(id),
-                Products = subcategoriesRepository.GetProductsForSubcategory(id, page ?? 1, limit ?? 20)
-            };
+            Subcategory = subcategoriesRepository.GetSubcategory(id),
+            Products = subcategoriesRepository.GetProductsForSubcategory(id, page ?? 1, limit ?? 20)
+        };
 
-            foreach (var product in result.Products)
-            {
-                product.Producer = producerRepository.GetProducer(product.ProducerID);
-            }
-            
-            return result;
-        }
+        foreach (var product in result.Products) product.Producer = producerRepository.GetProducer(product.ProducerID);
+
+        return result;
     }
 }

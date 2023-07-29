@@ -4,35 +4,34 @@ using online_shop_backend.Models.DTO;
 using online_shop_backend.Models.Entities;
 using online_shop_backend.Repositories.Interfaces;
 
-namespace online_shop_backend.Controllers
+namespace online_shop_backend.Controllers;
+
+[Route("/api/category")]
+public class CategoryController : Controller
 {
-    [Route("/api/category")]
-    public class CategoryController : Controller
+    private readonly ICategoriesRepository categoriesRepository;
+
+    public CategoryController(ICategoriesRepository categoriesRepository)
     {
-        private readonly ICategoriesRepository categoriesRepository;
+        this.categoriesRepository = categoriesRepository;
+    }
 
-        public CategoryController(ICategoriesRepository categoriesRepository)
-        {
-            this.categoriesRepository = categoriesRepository;
-        }
-        
-        [HttpGet]
-        public ICollection<Category> Index()
-        {
-            return categoriesRepository.GetAllCategories();
-        }
+    [HttpGet]
+    public ICollection<Category> Index()
+    {
+        return categoriesRepository.GetAllCategories();
+    }
 
-        [HttpGet("{id:required}")]
-        public CategoryPageDTO Category(int id, int? page, int? limit)
+    [HttpGet("{id:required}")]
+    public CategoryPageDTO Category(int id, int? page, int? limit)
+    {
+        var result = new CategoryPageDTO
         {
-            var result = new CategoryPageDTO
-            {
-                Category = categoriesRepository.GetCategory(id),
-                Subcategories = categoriesRepository.GetSubcategoriesForCategory(id),
-                Products = categoriesRepository.GetProductsForCategory(id, page ?? 1, limit ?? 20)
-            };
+            Category = categoriesRepository.GetCategory(id),
+            Subcategories = categoriesRepository.GetSubcategoriesForCategory(id),
+            Products = categoriesRepository.GetProductsForCategory(id, page ?? 1, limit ?? 20)
+        };
 
-            return result;
-        }
+        return result;
     }
 }
