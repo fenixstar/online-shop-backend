@@ -1,33 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend.tests/online-shop-backend.tests.csproj": {}
+    "C:\\work\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj": {}
   },
   "projects": {
-    "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend.tests/online-shop-backend.tests.csproj": {
+    "C:\\work\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend.tests/online-shop-backend.tests.csproj",
+        "projectUniqueName": "C:\\work\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj",
         "projectName": "online-shop-backend.tests",
-        "projectPath": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend.tests/online-shop-backend.tests.csproj",
-        "packagesPath": "/Users/antongavrikov/.nuget/packages/",
-        "outputPath": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend.tests/obj/",
+        "projectPath": "C:\\work\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj",
+        "packagesPath": "C:\\Users\\a.gavrikov\\.nuget\\packages\\",
+        "outputPath": "C:\\work\\online-shop-backend\\online-shop-backend.tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/antongavrikov/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\a.gavrikov\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net8.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/online-shop-backend.csproj": {
-                "projectPath": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/online-shop-backend.csproj"
+              "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj": {
+                "projectPath": "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj"
               }
             }
           }
@@ -39,8 +39,8 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
@@ -83,31 +83,31 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.402/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.1.23463.5/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/online-shop-backend.csproj": {
+    "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/online-shop-backend.csproj",
+        "projectUniqueName": "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj",
         "projectName": "online-shop-backend",
-        "projectPath": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/online-shop-backend.csproj",
-        "packagesPath": "/Users/antongavrikov/.nuget/packages/",
-        "outputPath": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/obj/",
+        "projectPath": "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj",
+        "packagesPath": "C:\\Users\\a.gavrikov\\.nuget\\packages\\",
+        "outputPath": "C:\\work\\online-shop-backend\\online-shop-backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/antongavrikov/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\a.gavrikov\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "net8.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -118,36 +118,38 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[8.0.0-rc.1.23421.29, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[8.0.0-rc.1.23421.29, )"
             },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[8.0.0-rc.1.23421.29, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[8.0.0-rc.1.23419.6, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[8.0.0-rc.1.23419.6, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[12.0.3, )"
+              "version": "[13.0.3, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[8.0.0-rc.1, )"
             },
             "Swashbuckle.AspNetCore.Swagger": {
               "target": "Package",
@@ -163,7 +165,7 @@
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[5.6.0, )"
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -185,7 +187,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.402/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.1.23463.5/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

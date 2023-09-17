@@ -103,12 +103,10 @@ namespace online_shop_backend.Controllers
 
             return result.Succeeded ? Ok() as IActionResult : BadRequest(new {message = "Update not successful"});
         }
-
+        
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserDTO user)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
             var userToAdd = new ApplicationUser
             {
                 UserName = user.Username,
