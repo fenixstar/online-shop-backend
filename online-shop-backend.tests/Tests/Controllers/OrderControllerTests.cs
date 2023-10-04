@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Identity;
-using Moq;
 using Newtonsoft.Json;
 using online_shop_backend.Controllers;
 using online_shop_backend.Models.DTO;
@@ -16,20 +15,20 @@ namespace online_shop_backend.tests.Tests.Controllers
     {
         private readonly OrderController orderController;
         private readonly IOrderRepository orderRepository;
+        private readonly IPaymentTypeRepository paymentTypeRepository;
         private readonly IProductRepository productRepository;
         private readonly IShippingMethodRepository shippingMethodRepository;
-        private readonly IPaymentTypeRepository paymentTypeRepository;
         private readonly UserManager<ApplicationUser> userManager;
 
         public OrderControllerTests()
         {
-            this.orderRepository = new SampleOrderRepository();
-            this.productRepository = new SampleProductRepository();
-            this.shippingMethodRepository = new SampleShippingMethodRepository();
-            this.paymentTypeRepository = new SamplePaymentTypeRepository();
-            this.userManager = TestUtils.CreateUserManager<ApplicationUser>();
-            
-            this.orderController = new OrderController(orderRepository, productRepository, 
+            orderRepository = new SampleOrderRepository();
+            productRepository = new SampleProductRepository();
+            shippingMethodRepository = new SampleShippingMethodRepository();
+            paymentTypeRepository = new SamplePaymentTypeRepository();
+            userManager = TestUtils.CreateUserManager<ApplicationUser>();
+
+            orderController = new OrderController(orderRepository, productRepository,
                 shippingMethodRepository, paymentTypeRepository, userManager);
         }
 
@@ -52,7 +51,7 @@ namespace online_shop_backend.tests.Tests.Controllers
             };
 
             var result = orderController.Index(cartObject)?.Result;
-            
+
             Assert.Equal(JsonConvert.SerializeObject(orderRepository.GetAllOrders().Last()),
                 JsonConvert.SerializeObject(result));
         }
@@ -76,7 +75,7 @@ namespace online_shop_backend.tests.Tests.Controllers
             };
 
             var result = orderController.Index(cartObject)?.Result;
-            
+
             Assert.Null(result);
         }
     }

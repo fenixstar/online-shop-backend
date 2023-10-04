@@ -7,11 +7,9 @@ namespace online_shop_backend.tests.Mocks
 {
     public class SampleShippingMethodRepository : IShippingMethodRepository
     {
-        private ICollection<ShippingMethod> ShippingMethods { get; set; }
-
         public SampleShippingMethodRepository()
         {
-            this.ShippingMethods = new List<ShippingMethod>
+            ShippingMethods = new List<ShippingMethod>
             {
                 new ShippingMethod
                 {
@@ -27,7 +25,9 @@ namespace online_shop_backend.tests.Mocks
                 }
             };
         }
-        
+
+        private ICollection<ShippingMethod> ShippingMethods { get; }
+
         public void AddShippingMethod(ShippingMethod shippingMethod)
         {
             ShippingMethods.Add(shippingMethod);

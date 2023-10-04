@@ -4,70 +4,71 @@ using online_shop_backend.Models.Entities;
 using online_shop_backend.Models.Identity;
 using online_shop_backend.Repositories.Interfaces;
 
-namespace online_shop_backend.Repositories.Implementations;
-
-public class EFOrderRepository : IOrderRepository
+namespace online_shop_backend.Repositories.Implementations
 {
-    private readonly ApplicationDbContext context;
-
-    public EFOrderRepository(ApplicationDbContext context)
+    public class EFOrderRepository : IOrderRepository
     {
-        this.context = context;
-    }
+        private readonly ApplicationDbContext context;
 
-    public void AddOrder(Order order)
-    {
-        context.Orders.Add(order);
+        public EFOrderRepository(ApplicationDbContext context)
+        {
+            this.context = context;
+        }
 
-        foreach (var orderDetail in order.Details)
-            context.Products.Find(orderDetail.ProductID).AvailableQuantity -= orderDetail.Quantity;
+        public void AddOrder(Order order)
+        {
+            context.Orders.Add(order);
 
-        context.SaveChanges();
-    }
+            foreach (var orderDetail in order.Details)
+                context.Products.Find(orderDetail.ProductID).AvailableQuantity -= orderDetail.Quantity;
 
-    public void RemoveOrder(Order order)
-    {
-        context.Orders.Remove(order);
-        context.SaveChanges();
-    }
+            context.SaveChanges();
+        }
 
-    public void UpdateOrder(Order order)
-    {
-        context.Orders.Update(order);
-        context.SaveChanges();
-    }
+        public void RemoveOrder(Order order)
+        {
+            context.Orders.Remove(order);
+            context.SaveChanges();
+        }
 
-    public Order GetOrder(long id)
-    {
-        return context.Orders.Find(id);
-    }
+        public void UpdateOrder(Order order)
+        {
+            context.Orders.Update(order);
+            context.SaveChanges();
+        }
 
-    public ICollection<Order> GetAllOrders()
-    {
-        return context.Orders.ToList();
-    }
+        public Order GetOrder(long id)
+        {
+            return context.Orders.Find(id);
+        }
 
-    public ICollection<Order> GetOrdersForUser(string userId)
-    {
-        return context.Orders.Where(order => order.ApplicationUserID == userId).ToList();
-    }
+        public ICollection<Order> GetAllOrders()
+        {
+            return context.Orders.ToList();
+        }
 
-    public ApplicationUser GetUserForOrder(long id)
-    {
-        return (ApplicationUser)context.Users.Find(
-            context.Orders.Find(id)?.ApplicationUserID
-        );
-    }
+        public ICollection<Order> GetOrdersForUser(string userId)
+        {
+            return context.Orders.Where(order => order.ApplicationUserID == userId).ToList();
+        }
 
-    public ShippingMethod GetShippingMethodForOrder(long id)
-    {
-        return context.ShippingMethods.Find(
-            context.Orders.Find(id)?.ShippingMethodID
-        );
-    }
+        public ApplicationUser GetUserForOrder(long id)
+        {
+            return (ApplicationUser) context.Users.Find(
+                context.Orders.Find(id)?.ApplicationUserID
+            );
+        }
 
-    public ICollection<OrderDetail> GetDetailsForOrder(long id)
-    {
-        return context.OrderDetails.Where(od => od.OrderID == id).ToList();
+        public ShippingMethod GetShippingMethodForOrder(long id)
+        {
+            return context.ShippingMethods.Find(
+                context.Orders.Find(id)?.ShippingMethodID
+            );
+        }
+
+        public ICollection<OrderDetail> GetDetailsForOrder(long id)
+        {
+            return context.OrderDetails.Where(od => od.OrderID == id).ToList();
+        }
     }
 }

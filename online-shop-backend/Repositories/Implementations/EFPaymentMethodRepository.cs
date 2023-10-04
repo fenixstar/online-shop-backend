@@ -4,56 +4,57 @@ using online_shop_backend.Models.Entities;
 using online_shop_backend.Models.Identity;
 using online_shop_backend.Repositories.Interfaces;
 
-namespace online_shop_backend.Repositories.Implementations;
-
-public class EFPaymentMethodRepository : IPaymentMethodRepository
+namespace online_shop_backend.Repositories.Implementations
 {
-    private readonly ApplicationDbContext context;
-
-    public EFPaymentMethodRepository(ApplicationDbContext context)
+    public class EFPaymentMethodRepository : IPaymentMethodRepository
     {
-        this.context = context;
-    }
+        private readonly ApplicationDbContext context;
 
-    public void AddPaymentMethod(PaymentMethod paymentMethod)
-    {
-        context.PaymentMethods.Add(paymentMethod);
-        context.SaveChanges();
-    }
+        public EFPaymentMethodRepository(ApplicationDbContext context)
+        {
+            this.context = context;
+        }
 
-    public void RemovePaymentMethod(PaymentMethod paymentMethod)
-    {
-        context.PaymentMethods.Remove(paymentMethod);
-        context.SaveChanges();
-    }
+        public void AddPaymentMethod(PaymentMethod paymentMethod)
+        {
+            context.PaymentMethods.Add(paymentMethod);
+            context.SaveChanges();
+        }
 
-    public void UpdatePaymentMethod(PaymentMethod paymentMethod)
-    {
-        context.PaymentMethods.Update(paymentMethod);
-        context.SaveChanges();
-    }
+        public void RemovePaymentMethod(PaymentMethod paymentMethod)
+        {
+            context.PaymentMethods.Remove(paymentMethod);
+            context.SaveChanges();
+        }
 
-    public PaymentMethod GetPaymentMethod(long id)
-    {
-        return context.PaymentMethods.Find(id);
-    }
+        public void UpdatePaymentMethod(PaymentMethod paymentMethod)
+        {
+            context.PaymentMethods.Update(paymentMethod);
+            context.SaveChanges();
+        }
 
-    public ICollection<PaymentMethod> GetAllPaymentMethods()
-    {
-        return context.PaymentMethods.ToList();
-    }
+        public PaymentMethod GetPaymentMethod(long id)
+        {
+            return context.PaymentMethods.Find(id);
+        }
 
-    public PaymentType GetTypeForPaymentMethod(long id)
-    {
-        return context.PaymentTypes.Find(
-            context.PaymentMethods.Find(id)?.PaymentTypeID
-        );
-    }
+        public ICollection<PaymentMethod> GetAllPaymentMethods()
+        {
+            return context.PaymentMethods.ToList();
+        }
 
-    public ApplicationUser GetUserForPaymentMethod(long id)
-    {
-        return (ApplicationUser)context.Users.Find(
-            context.PaymentMethods.Find(id)?.ApplicationUser
-        );
+        public PaymentType GetTypeForPaymentMethod(long id)
+        {
+            return context.PaymentTypes.Find(
+                context.PaymentMethods.Find(id)?.PaymentTypeID
+            );
+        }
+
+        public ApplicationUser GetUserForPaymentMethod(long id)
+        {
+            return (ApplicationUser) context.Users.Find(
+                context.PaymentMethods.Find(id)?.ApplicationUser
+            );
+        }
     }
 }

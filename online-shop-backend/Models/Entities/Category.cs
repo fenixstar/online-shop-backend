@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace online_shop_backend.Models.Entities;
-
-public class Category
+namespace online_shop_backend.Models.Entities
 {
-    public ICollection<Subcategory> Subcategories;
-    public int ID { get; set; }
+    public class Category
+    {
+        public ICollection<Subcategory> Subcategories { get; set; } = new List<Subcategory>();
 
-    [Required] [StringLength(200)] public string Name { get; set; }
+        public int ID { get; set; }
+
+        [Required] [StringLength(200)] public string Name { get; set; }
+    }
 }

@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using Newtonsoft.Json;
 using online_shop_backend.Controllers;
 using online_shop_backend.Models.DTO;
@@ -10,22 +9,22 @@ namespace online_shop_backend.tests.Tests.Controllers
 {
     public class SubcategoryControllerTests
     {
-        private readonly SubcategoryController subcategoryController;
-        private readonly ISubcategoriesRepository subcategoriesRepository;
         private readonly IProducerRepository producerRepository;
+        private readonly ISubcategoriesRepository subcategoriesRepository;
+        private readonly SubcategoryController subcategoryController;
 
         public SubcategoryControllerTests()
         {
-            this.subcategoriesRepository = new SampleSubcategoriesRepository();
-            this.producerRepository = new SampleProducerRepository();
-            this.subcategoryController = new SubcategoryController(subcategoriesRepository, producerRepository);
+            subcategoriesRepository = new SampleSubcategoriesRepository();
+            producerRepository = new SampleProducerRepository();
+            subcategoryController = new SubcategoryController(subcategoriesRepository, producerRepository);
         }
 
         [Fact]
         public void ReturnsAListOfAllSubcategories()
         {
             var result = subcategoryController.Index();
-            
+
             Assert.Equal(JsonConvert.SerializeObject(result),
                 JsonConvert.SerializeObject(subcategoriesRepository.GetAllSubcategories()));
         }
@@ -42,7 +41,7 @@ namespace online_shop_backend.tests.Tests.Controllers
                 Subcategory = subcategoriesRepository.GetSubcategory(id),
                 Products = subcategoriesRepository.GetProductsForSubcategory(id)
             };
-            
+
             Assert.Equal(JsonConvert.SerializeObject(expected),
                 JsonConvert.SerializeObject(result));
         }

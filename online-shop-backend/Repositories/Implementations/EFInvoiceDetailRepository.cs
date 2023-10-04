@@ -4,52 +4,53 @@ using online_shop_backend.Models.Entities;
 using online_shop_backend.Models.Identity;
 using online_shop_backend.Repositories.Interfaces;
 
-namespace online_shop_backend.Repositories.Implementations;
-
-public class EFInvoiceDetailRepository : IInvoiceDetailRepository
+namespace online_shop_backend.Repositories.Implementations
 {
-    private readonly ApplicationDbContext context;
-
-    public EFInvoiceDetailRepository(ApplicationDbContext context)
+    public class EFInvoiceDetailRepository : IInvoiceDetailRepository
     {
-        this.context = context;
-    }
+        private readonly ApplicationDbContext context;
 
-    public void AddInvoiceDetail(InvoiceDetail invoiceDetail)
-    {
-        context.InvoiceDetails.Add(invoiceDetail);
-        context.SaveChanges();
-    }
+        public EFInvoiceDetailRepository(ApplicationDbContext context)
+        {
+            this.context = context;
+        }
 
-    public void RemoveInvoiceDetail(InvoiceDetail invoiceDetail)
-    {
-        context.InvoiceDetails.Remove(invoiceDetail);
-        context.SaveChanges();
-    }
+        public void AddInvoiceDetail(InvoiceDetail invoiceDetail)
+        {
+            context.InvoiceDetails.Add(invoiceDetail);
+            context.SaveChanges();
+        }
 
-    public void UpdateInvoiceDetail(InvoiceDetail invoiceDetail)
-    {
-        context.InvoiceDetails.Update(invoiceDetail);
-        context.SaveChanges();
-    }
+        public void RemoveInvoiceDetail(InvoiceDetail invoiceDetail)
+        {
+            context.InvoiceDetails.Remove(invoiceDetail);
+            context.SaveChanges();
+        }
 
-    public InvoiceDetail GetInvoiceDetail(long id)
-    {
-        return context.InvoiceDetails.Find(id);
-    }
+        public void UpdateInvoiceDetail(InvoiceDetail invoiceDetail)
+        {
+            context.InvoiceDetails.Update(invoiceDetail);
+            context.SaveChanges();
+        }
 
-    public ICollection<InvoiceDetail> GetAllInvoiceDetails()
-    {
-        return context.InvoiceDetails.ToList();
-    }
+        public InvoiceDetail GetInvoiceDetail(long id)
+        {
+            return context.InvoiceDetails.Find(id);
+        }
 
-    public Invoice GetInvoiceForInvoiceDetail(long id)
-    {
-        return context.InvoiceDetails.Find(id)?.Invoice;
-    }
+        public ICollection<InvoiceDetail> GetAllInvoiceDetails()
+        {
+            return context.InvoiceDetails.ToList();
+        }
 
-    public Product GetProductForInvoiceDetail(long id)
-    {
-        return context.InvoiceDetails.Find(id)?.Product;
+        public Invoice GetInvoiceForInvoiceDetail(long id)
+        {
+            return context.InvoiceDetails.Find(id)?.Invoice;
+        }
+
+        public Product GetProductForInvoiceDetail(long id)
+        {
+            return context.InvoiceDetails.Find(id)?.Product;
+        }
     }
 }

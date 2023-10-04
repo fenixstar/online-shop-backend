@@ -4,38 +4,40 @@ using online_shop_backend.Models.DTO;
 using online_shop_backend.Models.Entities;
 using online_shop_backend.Repositories.Interfaces;
 
-namespace online_shop_backend.Controllers;
-
-[Route("/api/subcategory")]
-public class SubcategoryController : Controller
+namespace online_shop_backend.Controllers
 {
-    private readonly IProducerRepository producerRepository;
-    private readonly ISubcategoriesRepository subcategoriesRepository;
-
-    public SubcategoryController(ISubcategoriesRepository subcategoriesRepository,
-        IProducerRepository producerRepository)
+    [Route("/api/subcategory")]
+    public class SubcategoryController : Controller
     {
-        this.subcategoriesRepository = subcategoriesRepository;
-        this.producerRepository = producerRepository;
-    }
+        private readonly IProducerRepository producerRepository;
+        private readonly ISubcategoriesRepository subcategoriesRepository;
 
-    [HttpGet]
-    public ICollection<Subcategory> Index()
-    {
-        return subcategoriesRepository.GetAllSubcategories();
-    }
-
-    [HttpGet("{id:required}")]
-    public SubcategoryPageDTO Subcategory(int id, int? page, int? limit)
-    {
-        var result = new SubcategoryPageDTO
+        public SubcategoryController(ISubcategoriesRepository subcategoriesRepository,
+            IProducerRepository producerRepository)
         {
-            Subcategory = subcategoriesRepository.GetSubcategory(id),
-            Products = subcategoriesRepository.GetProductsForSubcategory(id, page ?? 1, limit ?? 20)
-        };
+            this.subcategoriesRepository = subcategoriesRepository;
+            this.producerRepository = producerRepository;
+        }
 
-        foreach (var product in result.Products) product.Producer = producerRepository.GetProducer(product.ProducerID);
+        [HttpGet]
+        public ICollection<Subcategory> Index()
+        {
+            return subcategoriesRepository.GetAllSubcategories();
+        }
 
-        return result;
+        [HttpGet("{id:required}")]
+        public SubcategoryPageDTO Subcategory(int id, int? page, int? limit)
+        {
+            var result = new SubcategoryPageDTO
+            {
+                Subcategory = subcategoriesRepository.GetSubcategory(id),
+                Products = subcategoriesRepository.GetProductsForSubcategory(id, page ?? 1, limit ?? 20)
+            };
+
+            foreach (var product in result.Products)
+                product.Producer = producerRepository.GetProducer(product.ProducerID);
+
+            return result;
+        }
     }
 }
