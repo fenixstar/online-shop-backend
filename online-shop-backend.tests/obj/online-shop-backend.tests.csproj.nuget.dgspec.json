@@ -1,33 +1,34 @@
 {
   "format": 1,
   "restore": {
-    "C:\\work\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj": {}
+    "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj": {}
   },
   "projects": {
-    "C:\\work\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj": {
+    "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\work\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj",
+        "projectUniqueName": "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj",
         "projectName": "online-shop-backend.tests",
-        "projectPath": "C:\\work\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj",
-        "packagesPath": "C:\\Users\\a.gavrikov\\.nuget\\packages\\",
-        "outputPath": "C:\\work\\online-shop-backend\\online-shop-backend.tests\\obj\\",
+        "projectPath": "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj",
+        "packagesPath": "C:\\Users\\fenix\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend.tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\a.gavrikov\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\fenix\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "D:\\Work\\infozont\\pckgs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj": {
-                "projectPath": "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj"
+              "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj": {
+                "projectPath": "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj"
               }
             }
           }
@@ -87,22 +88,23 @@
         }
       }
     },
-    "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj": {
+    "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj",
+        "projectUniqueName": "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj",
         "projectName": "online-shop-backend",
-        "projectPath": "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj",
-        "packagesPath": "C:\\Users\\a.gavrikov\\.nuget\\packages\\",
-        "outputPath": "C:\\work\\online-shop-backend\\online-shop-backend\\obj\\",
+        "projectPath": "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj",
+        "packagesPath": "C:\\Users\\fenix\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\a.gavrikov\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\fenix\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "D:\\Work\\infozont\\pckgs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
