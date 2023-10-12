@@ -95,7 +95,7 @@ namespace online_shop_backend
 
             app.UseStaticFiles();
 
-            // app.UseHttpsRedirection();
+            // app.UseHttpsRedirection(); 
 
             app.UseRouting();
 

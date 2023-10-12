@@ -113,7 +113,7 @@ namespace online_shop_backend.Controllers
                 Email = user.Email,
                 Details = new List<UserDetail>
                 {
-                    new UserDetail
+                    new()
                     {
                         Name = user.Name,
                         Surname = user.Surname
@@ -126,8 +126,8 @@ namespace online_shop_backend.Controllers
             if (result.Succeeded) await userManager.AddToRoleAsync(userToAdd, Constants.USER);
 
             return result.Succeeded
-                ? Ok(IdentityResult.Success) as IActionResult
-                : BadRequest(IdentityResult.Failed(result.Errors as IdentityError[]));
+                ? Ok(IdentityResult.Success)
+                : BadRequest(IdentityResult.Failed((result.Errors as IdentityError[])!));
         }
 
         [HttpPost("login")]

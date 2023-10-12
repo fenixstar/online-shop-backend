@@ -1,6 +1,9 @@
+using System;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using online_shop_backend.Models.Entities;
+using online_shop_backend.Utils;
 
 namespace online_shop_backend.Models.Identity
 {
@@ -26,6 +29,8 @@ namespace online_shop_backend.Models.Identity
         public DbSet<InvoiceDetail> InvoiceDetails { get; set; }
         public DbSet<Discount> Discounts { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<IdentityRole> Roles { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -47,6 +52,10 @@ namespace online_shop_backend.Models.Identity
             modelBuilder.Entity<InvoiceDetail>().ToTable("invoice_details");
             modelBuilder.Entity<Discount>().ToTable("discounts");
             modelBuilder.Entity<RefreshToken>().ToTable("refresh_tokens");
+            modelBuilder.Entity<IdentityRole>().ToTable("roles")
+                .HasData(new { Id = Guid.NewGuid().ToString(), Name = Constants.USER, NormalizedName = Constants.USER.ToUpper() },
+                    new { Id = Guid.NewGuid().ToString(), Name = Constants.ADMIN, NormalizedName = Constants.ADMIN.ToUpper() },
+                    new { Id = Guid.NewGuid().ToString(), Name = Constants.MODERATOR, NormalizedName = Constants.MODERATOR.ToUpper() });
         }
     }
 }

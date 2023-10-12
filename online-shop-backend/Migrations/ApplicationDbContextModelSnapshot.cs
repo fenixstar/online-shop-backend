@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using online_shop_backend.Models.Identity;
 
+#nullable disable
+
 namespace online_shop_backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
@@ -15,9 +17,10 @@ namespace online_shop_backend.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
-                .HasAnnotation("ProductVersion", "3.1.2")
+                .HasAnnotation("ProductVersion", "8.0.0-rc.1.23419.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -29,28 +32,49 @@ namespace online_shop_backend.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .HasColumnType("character varying(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("character varying(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex");
+                        .HasDatabaseName("RoleNameIndex");
 
-                    b.ToTable("AspNetRoles");
+                    b.ToTable("roles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "04be2a18-889f-491a-bea9-4f7c159e11bc",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        },
+                        new
+                        {
+                            Id = "5d5f1611-12c7-4075-a568-f5feb8ccbaa7",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "c4d31c79-0cf9-4f96-baff-1572c61f01d7",
+                            Name = "Moderator",
+                            NormalizedName = "MODERATOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("text");
@@ -66,7 +90,7 @@ namespace online_shop_backend.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
@@ -83,11 +107,12 @@ namespace online_shop_backend.Migrations
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(21)
+                        .HasColumnType("character varying(21)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("character varying(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
@@ -99,12 +124,12 @@ namespace online_shop_backend.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("character varying(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("character varying(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
@@ -122,29 +147,32 @@ namespace online_shop_backend.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("character varying(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
+                        .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex");
+                        .HasDatabaseName("UserNameIndex");
 
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("AspNetUsers", (string)null);
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("text");
@@ -160,7 +188,7 @@ namespace online_shop_backend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims");
+                    b.ToTable("AspNetUserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -182,7 +210,7 @@ namespace online_shop_backend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins");
+                    b.ToTable("AspNetUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -197,7 +225,7 @@ namespace online_shop_backend.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("AspNetUserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -216,35 +244,37 @@ namespace online_shop_backend.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens");
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Category", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.HasKey("ID");
 
-                    b.ToTable("categories");
+                    b.ToTable("categories", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Discount", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
 
                     b.Property<DateTime>("EndTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<decimal>("Percentage")
                         .HasColumnType("numeric");
@@ -253,27 +283,28 @@ namespace online_shop_backend.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("StartTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("ID");
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("discounts");
+                    b.ToTable("discounts", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Invoice", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
 
                     b.Property<string>("ApplicationUserID")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("DateIssued")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long>("OrderID")
                         .HasColumnType("bigint");
@@ -287,15 +318,16 @@ namespace online_shop_backend.Migrations
 
                     b.HasIndex("OrderID");
 
-                    b.ToTable("invoices");
+                    b.ToTable("invoices", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.InvoiceDetail", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
 
                     b.Property<long>("InvoiceID")
                         .HasColumnType("bigint");
@@ -315,25 +347,26 @@ namespace online_shop_backend.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("invoice_details");
+                    b.ToTable("invoice_details", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Order", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
 
                     b.Property<string>("ApplicationUserID")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("DateAndTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Note")
-                        .HasColumnType("character varying(400)")
-                        .HasMaxLength(400);
+                        .HasMaxLength(400)
+                        .HasColumnType("character varying(400)");
 
                     b.Property<int>("ShippingMethodID")
                         .HasColumnType("integer");
@@ -347,15 +380,16 @@ namespace online_shop_backend.Migrations
 
                     b.HasIndex("ShippingMethodID");
 
-                    b.ToTable("orders");
+                    b.ToTable("orders", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.OrderDetail", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
 
                     b.Property<long>("OrderID")
                         .HasColumnType("bigint");
@@ -375,15 +409,16 @@ namespace online_shop_backend.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("order_details");
+                    b.ToTable("order_details", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.PaymentMethod", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
 
                     b.Property<long>("ApplicationUserID")
                         .HasColumnType("bigint");
@@ -396,8 +431,8 @@ namespace online_shop_backend.Migrations
 
                     b.Property<string>("Value")
                         .IsRequired()
-                        .HasColumnType("character varying(512)")
-                        .HasMaxLength(512);
+                        .HasMaxLength(512)
+                        .HasColumnType("character varying(512)");
 
                     b.HasKey("ID");
 
@@ -405,73 +440,76 @@ namespace online_shop_backend.Migrations
 
                     b.HasIndex("PaymentTypeID");
 
-                    b.ToTable("payment_methods");
+                    b.ToTable("payment_methods", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.PaymentType", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("character varying(100)")
-                        .HasMaxLength(100);
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.HasKey("ID");
 
-                    b.ToTable("payment_types");
+                    b.ToTable("payment_types", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Producer", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.HasKey("ID");
 
-                    b.ToTable("producers");
+                    b.ToTable("producers", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.ProducerDetail", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
 
                     b.Property<string>("Address1")
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<string>("Address2")
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<string>("City")
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<string>("Country")
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("character varying(30)")
-                        .HasMaxLength(30);
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
                     b.Property<int>("ProducerID")
                         .HasColumnType("integer");
@@ -480,15 +518,16 @@ namespace online_shop_backend.Migrations
 
                     b.HasIndex("ProducerID");
 
-                    b.ToTable("producer_details");
+                    b.ToTable("producer_details", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Product", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
 
                     b.Property<int>("AvailableQuantity")
                         .HasColumnType("integer");
@@ -498,8 +537,8 @@ namespace online_shop_backend.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
@@ -518,21 +557,22 @@ namespace online_shop_backend.Migrations
 
                     b.HasIndex("SubcategoryID");
 
-                    b.ToTable("products");
+                    b.ToTable("products", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.RefreshToken", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
 
                     b.Property<string>("ApplicationUserID")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("ExpiryDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Token")
                         .HasColumnType("text");
@@ -541,15 +581,16 @@ namespace online_shop_backend.Migrations
 
                     b.HasIndex("ApplicationUserID");
 
-                    b.ToTable("refresh_tokens");
+                    b.ToTable("refresh_tokens", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Review", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
 
                     b.Property<long>("ApplicationUserID")
                         .HasColumnType("bigint");
@@ -559,8 +600,8 @@ namespace online_shop_backend.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("character varying(1024)")
-                        .HasMaxLength(1024);
+                        .HasMaxLength(1024)
+                        .HasColumnType("character varying(1024)");
 
                     b.Property<long>("ProductID")
                         .HasColumnType("bigint");
@@ -574,88 +615,91 @@ namespace online_shop_backend.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("reviews");
+                    b.ToTable("reviews", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.ShippingMethod", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
                     b.HasKey("ID");
 
-                    b.ToTable("shipping_methods");
+                    b.ToTable("shipping_methods", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Subcategory", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
 
                     b.Property<int>("CategoryID")
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.HasKey("ID");
 
                     b.HasIndex("CategoryID");
 
-                    b.ToTable("subcategories");
+                    b.ToTable("subcategories", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.UserDetail", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
 
                     b.Property<string>("Address1")
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<string>("Address2")
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<string>("Address3")
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<string>("ApplicationUserID")
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("character varying(128)")
-                        .HasMaxLength(128);
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
 
                     b.Property<string>("Surname")
                         .IsRequired()
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.HasKey("ID");
 
                     b.HasIndex("ApplicationUserID");
 
-                    b.ToTable("user_details");
+                    b.ToTable("user_details", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Identity.ApplicationUser", b =>
@@ -723,6 +767,8 @@ namespace online_shop_backend.Migrations
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Invoice", b =>
@@ -736,6 +782,10 @@ namespace online_shop_backend.Migrations
                         .HasForeignKey("OrderID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.InvoiceDetail", b =>
@@ -751,6 +801,10 @@ namespace online_shop_backend.Migrations
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Invoice");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Order", b =>
@@ -764,6 +818,10 @@ namespace online_shop_backend.Migrations
                         .HasForeignKey("ShippingMethodID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("ShippingMethod");
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.OrderDetail", b =>
@@ -779,6 +837,10 @@ namespace online_shop_backend.Migrations
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.PaymentMethod", b =>
@@ -792,6 +854,10 @@ namespace online_shop_backend.Migrations
                         .HasForeignKey("PaymentTypeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("PaymentType");
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.ProducerDetail", b =>
@@ -801,6 +867,8 @@ namespace online_shop_backend.Migrations
                         .HasForeignKey("ProducerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Producer");
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Product", b =>
@@ -822,6 +890,12 @@ namespace online_shop_backend.Migrations
                         .HasForeignKey("SubcategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Producer");
+
+                    b.Navigation("Subcategory");
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.RefreshToken", b =>
@@ -829,6 +903,8 @@ namespace online_shop_backend.Migrations
                     b.HasOne("online_shop_backend.Models.Identity.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserID");
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Review", b =>
@@ -842,15 +918,21 @@ namespace online_shop_backend.Migrations
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Subcategory", b =>
                 {
                     b.HasOne("online_shop_backend.Models.Entities.Category", "Category")
-                        .WithMany()
+                        .WithMany("Subcategories")
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.UserDetail", b =>
@@ -858,6 +940,48 @@ namespace online_shop_backend.Migrations
                     b.HasOne("online_shop_backend.Models.Identity.ApplicationUser", "ApplicationUser")
                         .WithMany("Details")
                         .HasForeignKey("ApplicationUserID");
+
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("online_shop_backend.Models.Entities.Category", b =>
+                {
+                    b.Navigation("Subcategories");
+                });
+
+            modelBuilder.Entity("online_shop_backend.Models.Entities.Invoice", b =>
+                {
+                    b.Navigation("Details");
+                });
+
+            modelBuilder.Entity("online_shop_backend.Models.Entities.Order", b =>
+                {
+                    b.Navigation("Details");
+
+                    b.Navigation("Invoices");
+                });
+
+            modelBuilder.Entity("online_shop_backend.Models.Entities.PaymentType", b =>
+                {
+                    b.Navigation("PaymentMethods");
+                });
+
+            modelBuilder.Entity("online_shop_backend.Models.Entities.Product", b =>
+                {
+                    b.Navigation("Discounts");
+
+                    b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("online_shop_backend.Models.Identity.ApplicationUser", b =>
+                {
+                    b.Navigation("Details");
+
+                    b.Navigation("Invoices");
+
+                    b.Navigation("PaymentMethods");
+
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }
