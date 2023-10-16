@@ -18,14 +18,9 @@ using online_shop_backend.Utils;
 
 namespace online_shop_backend
 {
-    public class Startup
+    public class Startup(IConfiguration configuration)
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; } = configuration;
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -33,7 +28,7 @@ namespace online_shop_backend
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(Configuration["ConnectionStrings:OnlineShopDatabase"]));
 
-            services.AddTransient<ICategoriesRepository, EFCategoriesRepository>();
+            services.AddTransient<ICategoriesRepository, EfCategoriesRepository>();
             services.AddTransient<ISubcategoriesRepository, EFSubcategoriesRepository>();
             services.AddTransient<IProductRepository, EFProductRepository>();
             services.AddTransient<IProducerRepository, EFProducerRepository>();

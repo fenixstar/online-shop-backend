@@ -14,23 +14,23 @@ namespace online_shop_backend.tests.Mocks
                 new Subcategory
                 {
                     ID = 1,
-                    Name = "Sub1",
+                    Title = "Sub1",
                     CategoryID = 1,
                     Category = new Category
                     {
                         ID = 1,
-                        Name = "Cat1"
+                        Title = "Cat1"
                     }
                 },
                 new Subcategory
                 {
                     ID = 3,
-                    Name = "Sub3",
+                    Title = "Sub3",
                     CategoryID = 2,
                     Category = new Category
                     {
                         ID = 2,
-                        Name = "Cat2"
+                        Title = "Cat2"
                     }
                 }
             };

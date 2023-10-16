@@ -14,28 +14,13 @@ namespace online_shop_backend.Controllers
 {
     [Route("/api/order")]
     [AllowAnonymous]
-    public class OrderController : Controller
-    {
-        private readonly IOrderRepository orderRepository;
-        private readonly IPaymentTypeRepository paymentTypeRepository;
-        private readonly IProductRepository productRepository;
-        private readonly IShippingMethodRepository shippingMethodRepository;
-        private readonly UserManager<ApplicationUser> userManager;
-
-        public OrderController(
-            IOrderRepository orderRepository,
+    public class OrderController(IOrderRepository orderRepository,
             IProductRepository productRepository,
             IShippingMethodRepository shippingMethodRepository,
             IPaymentTypeRepository paymentTypeRepository,
             UserManager<ApplicationUser> userManager)
-        {
-            this.orderRepository = orderRepository;
-            this.productRepository = productRepository;
-            this.shippingMethodRepository = shippingMethodRepository;
-            this.paymentTypeRepository = paymentTypeRepository;
-            this.userManager = userManager;
-        }
-
+        : Controller
+    {
         [HttpGet("{id:required}")]
         [Authorize]
         public Order GetOrderForId(long id)

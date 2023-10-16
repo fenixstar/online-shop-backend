@@ -20,25 +20,12 @@ namespace online_shop_backend.Controllers
 {
     [Route("/api/account")]
     [AllowAnonymous]
-    public class AccountController : Controller
-    {
-        private readonly IConfiguration configuration;
-        private readonly IRefreshTokenRepository refreshTokenRepository;
-        private readonly IUserDetailRepository userDetailRepository;
-        private readonly UserManager<ApplicationUser> userManager;
-
-        public AccountController(
-            UserManager<ApplicationUser> userManager,
+    public class AccountController(UserManager<ApplicationUser> userManager,
             IRefreshTokenRepository refreshTokenRepository,
             IConfiguration configuration,
             IUserDetailRepository userDetailRepository)
-        {
-            this.userManager = userManager;
-            this.refreshTokenRepository = refreshTokenRepository;
-            this.configuration = configuration;
-            this.userDetailRepository = userDetailRepository;
-        }
-
+        : Controller
+    {
         [HttpPost("details")]
         [Authorize]
         public async Task<List<UserDetail>> GetCurrentUserDetails([FromBody] UserDTO user)
@@ -174,12 +161,6 @@ namespace online_shop_backend.Controllers
 
         private async Task<string> GenerateJwt(ApplicationUser user)
         {
-            var identity = new ClaimsIdentity(
-                new[]
-                {
-                    new Claim(ClaimTypes.Name, user.UserName)
-                });
-
             var secretKey = Encoding.ASCII.GetBytes(configuration["SecretKey"]);
 
             var claims = (await userManager.GetRolesAsync(user))

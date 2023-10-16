@@ -1,23 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
+using online_shop_backend.Models.DTO;
 using online_shop_backend.Models.Entities;
 using online_shop_backend.Models.Identity;
 using online_shop_backend.Repositories.Interfaces;
 
 namespace online_shop_backend.Repositories.Implementations
 {
-    public class EFCategoriesRepository : ICategoriesRepository
+    public class EfCategoriesRepository(ApplicationDbContext context) : ICategoriesRepository
     {
-        private readonly ApplicationDbContext context;
-
-        public EFCategoriesRepository(ApplicationDbContext context)
+        public void AddCategory(CategoryDto category)
         {
-            this.context = context;
-        }
-
-        public void AddCategory(Category category)
-        {
-            context.Categories.Add(category);
+            context.Categories.Add(new Category { Title = category.Name });
             context.SaveChanges();
         }
 

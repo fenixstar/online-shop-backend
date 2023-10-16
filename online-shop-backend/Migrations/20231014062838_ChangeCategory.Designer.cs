@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using online_shop_backend.Models.Identity;
@@ -11,9 +12,11 @@ using online_shop_backend.Models.Identity;
 namespace online_shop_backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231014062838_ChangeCategory")]
+    partial class ChangeCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,19 +53,19 @@ namespace online_shop_backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9035584b-0a2e-45b5-98af-1a51b8f62f7a",
+                            Id = "399d736d-9b0e-4031-86f9-f5cfb19263e2",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "b4f29ee4-7e83-4c98-8ec3-359e4ae470d7",
+                            Id = "22edce5c-b0b4-4f6a-8853-ac8b6062e1bb",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "8c826831-d97f-4a38-8769-e8a741cc7c1e",
+                            Id = "1af4c42f-ed9c-451f-902f-bc96ed081c5c",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         });
@@ -695,7 +698,7 @@ namespace online_shop_backend.Migrations
                     b.Property<int>("CategoryID")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
@@ -711,175 +714,175 @@ namespace online_shop_backend.Migrations
                         {
                             ID = 1,
                             CategoryID = 1,
-                            Title = "Корм для собак"
+                            Name = "Корм для собак"
                         },
                         new
                         {
                             ID = 2,
                             CategoryID = 1,
-                            Title = "Игрушки для собак"
+                            Name = "Игрушки для собак"
                         },
                         new
                         {
                             ID = 3,
                             CategoryID = 1,
-                            Title = "Ошейники и поводкик"
+                            Name = "Ошейники и поводкик"
                         },
                         new
                         {
                             ID = 4,
                             CategoryID = 1,
-                            Title = "Туалеты"
+                            Name = "Туалеты"
                         },
                         new
                         {
                             ID = 5,
                             CategoryID = 1,
-                            Title = "Миски и поилки"
+                            Name = "Миски и поилки"
                         },
                         new
                         {
                             ID = 6,
                             CategoryID = 2,
-                            Title = "Корм для кошек"
+                            Name = "Корм для кошек"
                         },
                         new
                         {
                             ID = 7,
                             CategoryID = 2,
-                            Title = "Игрушки для кошек"
+                            Name = "Игрушки для кошек"
                         },
                         new
                         {
                             ID = 8,
                             CategoryID = 2,
-                            Title = "Ошейники и поводки"
+                            Name = "Ошейники и поводки"
                         },
                         new
                         {
                             ID = 9,
                             CategoryID = 2,
-                            Title = "Когтеточки"
+                            Name = "Когтеточки"
                         },
                         new
                         {
                             ID = 10,
                             CategoryID = 2,
-                            Title = "Туалеты"
+                            Name = "Туалеты"
                         },
                         new
                         {
                             ID = 11,
                             CategoryID = 2,
-                            Title = "Миски и поилки"
+                            Name = "Миски и поилки"
                         },
                         new
                         {
                             ID = 12,
                             CategoryID = 3,
-                            Title = "Корм для грызунов"
+                            Name = "Корм для грызунов"
                         },
                         new
                         {
                             ID = 13,
                             CategoryID = 3,
-                            Title = "Вольеры и клетки"
+                            Name = "Вольеры и клетки"
                         },
                         new
                         {
                             ID = 14,
                             CategoryID = 3,
-                            Title = "Игрушки для грызунов"
+                            Name = "Игрушки для грызунов"
                         },
                         new
                         {
                             ID = 15,
                             CategoryID = 3,
-                            Title = "Миски и поилки"
+                            Name = "Миски и поилки"
                         },
                         new
                         {
                             ID = 16,
                             CategoryID = 4,
-                            Title = "Корм для рыбок"
+                            Name = "Корм для рыбок"
                         },
                         new
                         {
                             ID = 17,
                             CategoryID = 4,
-                            Title = "Прочая переферия для рыбок"
+                            Name = "Прочая переферия для рыбок"
                         },
                         new
                         {
                             ID = 18,
                             CategoryID = 5,
-                            Title = "Вольеры и клетки"
+                            Name = "Вольеры и клетки"
                         },
                         new
                         {
                             ID = 19,
                             CategoryID = 5,
-                            Title = "Корм для птиц"
+                            Name = "Корм для птиц"
                         },
                         new
                         {
                             ID = 20,
                             CategoryID = 5,
-                            Title = "Гнезда и гнездовые принадлежности"
+                            Name = "Гнезда и гнездовые принадлежности"
                         },
                         new
                         {
                             ID = 21,
                             CategoryID = 6,
-                            Title = "Террариумы"
+                            Name = "Террариумы"
                         },
                         new
                         {
                             ID = 22,
                             CategoryID = 6,
-                            Title = "Корм для рептилий"
+                            Name = "Корм для рептилий"
                         },
                         new
                         {
                             ID = 23,
                             CategoryID = 6,
-                            Title = "Освещение и обогрев для террариумов"
+                            Name = "Освещение и обогрев для террариумов"
                         },
                         new
                         {
                             ID = 24,
                             CategoryID = 7,
-                            Title = "Мелкие животные"
+                            Name = "Мелкие животные"
                         },
                         new
                         {
                             ID = 25,
                             CategoryID = 7,
-                            Title = "Корм и аксессуары для экзотических животных"
+                            Name = "Корм и аксессуары для экзотических животных"
                         },
                         new
                         {
                             ID = 26,
                             CategoryID = 8,
-                            Title = "Гигиенические средства"
+                            Name = "Гигиенические средства"
                         },
                         new
                         {
                             ID = 27,
                             CategoryID = 8,
-                            Title = "Посуда и кормушки"
+                            Name = "Посуда и кормушки"
                         },
                         new
                         {
                             ID = 28,
                             CategoryID = 8,
-                            Title = "Лежанки и домики"
+                            Name = "Лежанки и домики"
                         },
                         new
                         {
                             ID = 29,
                             CategoryID = 8,
-                            Title = "Одежда и аксессуары"
+                            Name = "Одежда и аксессуары"
                         });
                 });
 

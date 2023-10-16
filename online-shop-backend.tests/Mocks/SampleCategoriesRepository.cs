@@ -14,40 +14,40 @@ namespace online_shop_backend.tests.Mocks
                 new Category
                 {
                     ID = 1,
-                    Name = "Cat1",
+                    Title = "Cat1",
                     Subcategories = new List<Subcategory>
                     {
                         new Subcategory
                         {
                             ID = 1,
                             CategoryID = 1,
-                            Name = "Sub1"
+                            Title = "Sub1"
                         },
                         new Subcategory
                         {
                             ID = 2,
                             CategoryID = 1,
-                            Name = "Sub2"
+                            Title = "Sub2"
                         }
                     }
                 },
                 new Category
                 {
                     ID = 2,
-                    Name = "Cat2",
+                    Title = "Cat2",
                     Subcategories = new List<Subcategory>
                     {
                         new Subcategory
                         {
                             ID = 3,
                             CategoryID = 2,
-                            Name = "Sub3"
+                            Title = "Sub3"
                         },
                         new Subcategory
                         {
                             ID = 4,
                             CategoryID = 2,
-                            Name = "Sub4"
+                            Title = "Sub4"
                         }
                     }
                 }
