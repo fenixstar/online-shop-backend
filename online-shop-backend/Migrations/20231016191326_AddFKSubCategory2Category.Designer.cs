@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using online_shop_backend.Models.Identity;
@@ -11,9 +12,11 @@ using online_shop_backend.Models.Identity;
 namespace online_shop_backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231016191326_AddFKSubCategory2Category")]
+    partial class AddFKSubCategory2Category
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,19 +53,19 @@ namespace online_shop_backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "663b9e9b-7b5b-40d0-a6b4-f50c88fb73cf",
+                            Id = "243aabde-1cd1-4c10-8762-0718260f5d93",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "bada50d8-9a56-4b77-b621-777cf3a02396",
+                            Id = "ad128534-4e8a-4312-931e-bbcd12ca779e",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "90786458-d132-4e38-b092-ce5e860941cf",
+                            Id = "299d2b84-ea04-4941-9b80-8de4e8764abc",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         });

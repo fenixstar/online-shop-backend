@@ -86,8 +86,7 @@ namespace online_shop_backend
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
-
+            
             app.UseStaticFiles();
 
             // app.UseHttpsRedirection(); 

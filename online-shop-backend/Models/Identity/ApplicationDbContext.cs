@@ -54,6 +54,8 @@ public class ApplicationDbContext : IdentityDbContext
                 new Category { ID = 7, Title = "Другие питомцы" },
                 new Category { ID = 8, Title = "Уход и аксессуары" }
             );
+
+        
         modelBuilder.Entity<Subcategory>()
             .ToTable("subcategories")
             .HasData(
@@ -86,6 +88,13 @@ public class ApplicationDbContext : IdentityDbContext
                 new Subcategory { ID = 27, CategoryID = 8, Title = "Посуда и кормушки" },
                 new Subcategory { ID = 28, CategoryID = 8, Title = "Лежанки и домики" },
                 new Subcategory { ID = 29, CategoryID = 8, Title = "Одежда и аксессуары" });
+        
+        modelBuilder.Entity<Subcategory>()
+            .HasOne(x => x.Category)
+            .WithMany(x => x.Subcategories)
+            .HasForeignKey(x => x.CategoryID)
+            .IsRequired();
+        
         modelBuilder.Entity<PaymentType>().ToTable("payment_types");
         modelBuilder.Entity<PaymentMethod>().ToTable("payment_methods");
         modelBuilder.Entity<Review>().ToTable("reviews");
@@ -95,8 +104,19 @@ public class ApplicationDbContext : IdentityDbContext
         modelBuilder.Entity<Discount>().ToTable("discounts");
         modelBuilder.Entity<RefreshToken>().ToTable("refresh_tokens");
         modelBuilder.Entity<IdentityRole>().ToTable("roles")
-            .HasData(new { Id = Guid.NewGuid().ToString(), Name = Constants.USER, NormalizedName = Constants.USER.ToUpper() },
-                new { Id = Guid.NewGuid().ToString(), Name = Constants.ADMIN, NormalizedName = Constants.ADMIN.ToUpper() },
-                new { Id = Guid.NewGuid().ToString(), Name = Constants.MODERATOR, NormalizedName = Constants.MODERATOR.ToUpper() });
+            .HasData(
+                new
+                {
+                    Id = Guid.NewGuid().ToString(), Name = Constants.USER, NormalizedName = Constants.USER.ToUpper()
+                },
+                new
+                {
+                    Id = Guid.NewGuid().ToString(), Name = Constants.ADMIN, NormalizedName = Constants.ADMIN.ToUpper()
+                },
+                new
+                {
+                    Id = Guid.NewGuid().ToString(), Name = Constants.MODERATOR,
+                    NormalizedName = Constants.MODERATOR.ToUpper()
+                });
     }
 }

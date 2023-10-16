@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using online_shop_backend.Models.DTO;
 using online_shop_backend.Models.Entities;
 using online_shop_backend.Models.Identity;
@@ -34,7 +35,7 @@ namespace online_shop_backend.Repositories.Implementations
 
         public ICollection<Category> GetAllCategories()
         {
-            return context.Categories.ToList();
+            return context.Categories.Include(x => x.Subcategories).ToList();
         }
 
         public ICollection<Subcategory> GetSubcategoriesForCategory(int id)
