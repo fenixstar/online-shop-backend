@@ -31,6 +31,8 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<RefreshToken> RefreshTokens { get; set; }
     public DbSet<IdentityRole> Roles { get; set; }
 
+    public DbSet<ProductPicture> ProductPictures { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -45,56 +47,56 @@ public class ApplicationDbContext : IdentityDbContext
         modelBuilder.Entity<Category>()
             .ToTable("categories")
             .HasData(
-                new Category { ID = 1, Title = "Собаки" },
-                new Category { ID = 2, Title = "Кошки" },
-                new Category { ID = 3, Title = "Грызуны" },
-                new Category { ID = 4, Title = "Рыбы" },
-                new Category { ID = 5, Title = "Птицы" },
-                new Category { ID = 6, Title = "Риптилии" },
-                new Category { ID = 7, Title = "Другие питомцы" },
-                new Category { ID = 8, Title = "Уход и аксессуары" }
+                new Category { Id = 1, Title = "Собаки" },
+                new Category { Id = 2, Title = "Кошки" },
+                new Category { Id = 3, Title = "Грызуны" },
+                new Category { Id = 4, Title = "Рыбы" },
+                new Category { Id = 5, Title = "Птицы" },
+                new Category { Id = 6, Title = "Риптилии" },
+                new Category { Id = 7, Title = "Другие питомцы" },
+                new Category { Id = 8, Title = "Уход и аксессуары" }
             );
 
-        
+
         modelBuilder.Entity<Subcategory>()
             .ToTable("subcategories")
             .HasData(
-                new Subcategory { ID = 1, CategoryID = 1, Title = "Корм для собак" },
-                new Subcategory { ID = 2, CategoryID = 1, Title = "Игрушки для собак" },
-                new Subcategory { ID = 3, CategoryID = 1, Title = "Ошейники и поводкик" },
-                new Subcategory { ID = 4, CategoryID = 1, Title = "Туалеты" },
-                new Subcategory { ID = 5, CategoryID = 1, Title = "Миски и поилки" },
-                new Subcategory { ID = 6, CategoryID = 2, Title = "Корм для кошек" },
-                new Subcategory { ID = 7, CategoryID = 2, Title = "Игрушки для кошек" },
-                new Subcategory { ID = 8, CategoryID = 2, Title = "Ошейники и поводки" },
-                new Subcategory { ID = 9, CategoryID = 2, Title = "Когтеточки" },
-                new Subcategory { ID = 10, CategoryID = 2, Title = "Туалеты" },
-                new Subcategory { ID = 11, CategoryID = 2, Title = "Миски и поилки" },
-                new Subcategory { ID = 12, CategoryID = 3, Title = "Корм для грызунов" },
-                new Subcategory { ID = 13, CategoryID = 3, Title = "Вольеры и клетки" },
-                new Subcategory { ID = 14, CategoryID = 3, Title = "Игрушки для грызунов" },
-                new Subcategory { ID = 15, CategoryID = 3, Title = "Миски и поилки" },
-                new Subcategory { ID = 16, CategoryID = 4, Title = "Корм для рыбок" },
-                new Subcategory { ID = 17, CategoryID = 4, Title = "Прочая переферия для рыбок" },
-                new Subcategory { ID = 18, CategoryID = 5, Title = "Вольеры и клетки" },
-                new Subcategory { ID = 19, CategoryID = 5, Title = "Корм для птиц" },
-                new Subcategory { ID = 20, CategoryID = 5, Title = "Гнезда и гнездовые принадлежности" },
-                new Subcategory { ID = 21, CategoryID = 6, Title = "Террариумы" },
-                new Subcategory { ID = 22, CategoryID = 6, Title = "Корм для рептилий" },
-                new Subcategory { ID = 23, CategoryID = 6, Title = "Освещение и обогрев для террариумов" },
-                new Subcategory { ID = 24, CategoryID = 7, Title = "Мелкие животные" },
-                new Subcategory { ID = 25, CategoryID = 7, Title = "Корм и аксессуары для экзотических животных" },
-                new Subcategory { ID = 26, CategoryID = 8, Title = "Гигиенические средства" },
-                new Subcategory { ID = 27, CategoryID = 8, Title = "Посуда и кормушки" },
-                new Subcategory { ID = 28, CategoryID = 8, Title = "Лежанки и домики" },
-                new Subcategory { ID = 29, CategoryID = 8, Title = "Одежда и аксессуары" });
-        
+                new Subcategory { Id = 1, CategoryId = 1, Title = "Корм для собак" },
+                new Subcategory { Id = 2, CategoryId = 1, Title = "Игрушки для собак" },
+                new Subcategory { Id = 3, CategoryId = 1, Title = "Ошейники и поводкик" },
+                new Subcategory { Id = 4, CategoryId = 1, Title = "Туалеты" },
+                new Subcategory { Id = 5, CategoryId = 1, Title = "Миски и поилки" },
+                new Subcategory { Id = 6, CategoryId = 2, Title = "Корм для кошек" },
+                new Subcategory { Id = 7, CategoryId = 2, Title = "Игрушки для кошек" },
+                new Subcategory { Id = 8, CategoryId = 2, Title = "Ошейники и поводки" },
+                new Subcategory { Id = 9, CategoryId = 2, Title = "Когтеточки" },
+                new Subcategory { Id = 10, CategoryId = 2, Title = "Туалеты" },
+                new Subcategory { Id = 11, CategoryId = 2, Title = "Миски и поилки" },
+                new Subcategory { Id = 12, CategoryId = 3, Title = "Корм для грызунов" },
+                new Subcategory { Id = 13, CategoryId = 3, Title = "Вольеры и клетки" },
+                new Subcategory { Id = 14, CategoryId = 3, Title = "Игрушки для грызунов" },
+                new Subcategory { Id = 15, CategoryId = 3, Title = "Миски и поилки" },
+                new Subcategory { Id = 16, CategoryId = 4, Title = "Корм для рыбок" },
+                new Subcategory { Id = 17, CategoryId = 4, Title = "Прочая переферия для рыбок" },
+                new Subcategory { Id = 18, CategoryId = 5, Title = "Вольеры и клетки" },
+                new Subcategory { Id = 19, CategoryId = 5, Title = "Корм для птиц" },
+                new Subcategory { Id = 20, CategoryId = 5, Title = "Гнезда и гнездовые принадлежности" },
+                new Subcategory { Id = 21, CategoryId = 6, Title = "Террариумы" },
+                new Subcategory { Id = 22, CategoryId = 6, Title = "Корм для рептилий" },
+                new Subcategory { Id = 23, CategoryId = 6, Title = "Освещение и обогрев для террариумов" },
+                new Subcategory { Id = 24, CategoryId = 7, Title = "Мелкие животные" },
+                new Subcategory { Id = 25, CategoryId = 7, Title = "Корм и аксессуары для экзотических животных" },
+                new Subcategory { Id = 26, CategoryId = 8, Title = "Гигиенические средства" },
+                new Subcategory { Id = 27, CategoryId = 8, Title = "Посуда и кормушки" },
+                new Subcategory { Id = 28, CategoryId = 8, Title = "Лежанки и домики" },
+                new Subcategory { Id = 29, CategoryId = 8, Title = "Одежда и аксессуары" });
+
         modelBuilder.Entity<Subcategory>()
             .HasOne(x => x.Category)
             .WithMany(x => x.Subcategories)
-            .HasForeignKey(x => x.CategoryID)
+            .HasForeignKey(x => x.CategoryId)
             .IsRequired();
-        
+
         modelBuilder.Entity<PaymentType>().ToTable("payment_types");
         modelBuilder.Entity<PaymentMethod>().ToTable("payment_methods");
         modelBuilder.Entity<Review>().ToTable("reviews");
@@ -107,16 +109,23 @@ public class ApplicationDbContext : IdentityDbContext
             .HasData(
                 new
                 {
-                    Id = Guid.NewGuid().ToString(), Name = Constants.USER, NormalizedName = Constants.USER.ToUpper()
+                    Id = Guid.NewGuid().ToString(), Name = Constants.User, NormalizedName = Constants.User.ToUpper()
                 },
                 new
                 {
-                    Id = Guid.NewGuid().ToString(), Name = Constants.ADMIN, NormalizedName = Constants.ADMIN.ToUpper()
+                    Id = Guid.NewGuid().ToString(), Name = Constants.Admin, NormalizedName = Constants.Admin.ToUpper()
                 },
                 new
                 {
-                    Id = Guid.NewGuid().ToString(), Name = Constants.MODERATOR,
-                    NormalizedName = Constants.MODERATOR.ToUpper()
+                    Id = Guid.NewGuid().ToString(), Name = Constants.Moderator,
+                    NormalizedName = Constants.Moderator.ToUpper()
                 });
+
+        modelBuilder.Entity<ProductPicture>().ToTable("product_pictures");
+
+        modelBuilder.Entity<ProductPicture>()
+            .HasOne(x => x.Product)
+            .WithMany(x => x.ProductPictures)
+            .HasForeignKey(x => x.ProductId);
     }
 }

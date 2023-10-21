@@ -14,32 +14,32 @@ namespace online_shop_backend.tests.Mocks
             {
                 new Discount
                 {
-                    ID = 1,
+                    Id = 1,
                     Percentage = 10m,
-                    ProductID = 1,
+                    ProductId = 1,
                     Product = new Product
                     {
-                        ID = 1,
+                        Id = 1,
                         Name = "Product1",
                         AvailableQuantity = 10,
                         Price = 15.5m,
-                        CategoryID = 1,
+                        CategoryId = 1,
                         Category = new Category
                         {
-                            ID = 1,
+                            Id = 1,
                             Title = "Cat1"
                         },
-                        SubcategoryID = 1,
+                        SubcategoryId = 1,
                         Subcategory = new Subcategory
                         {
-                            ID = 1,
+                            Id = 1,
                             Title = "Sub1",
-                            CategoryID = 1
+                            CategoryId = 1
                         },
-                        ProducerID = 1,
+                        ProducerId = 1,
                         Producer = new Producer
                         {
-                            ID = 1,
+                            Id = 1,
                             Name = "Producer1"
                         }
                     },
@@ -63,13 +63,13 @@ namespace online_shop_backend.tests.Mocks
 
         public void UpdateDiscount(Discount discount)
         {
-            Discounts.Remove(Discounts.First(d => d.ID == discount.ID));
+            Discounts.Remove(Discounts.First(d => d.Id == discount.Id));
             Discounts.Add(discount);
         }
 
         public Discount GetDiscount(long id)
         {
-            return Discounts.First(d => d.ID == id);
+            return Discounts.First(d => d.Id == id);
         }
 
         public ICollection<Discount> GetAllDiscounts()

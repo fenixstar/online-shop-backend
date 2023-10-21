@@ -13,40 +13,40 @@ namespace online_shop_backend.tests.Mocks
             {
                 new Category
                 {
-                    ID = 1,
+                    Id = 1,
                     Title = "Cat1",
                     Subcategories = new List<Subcategory>
                     {
                         new Subcategory
                         {
-                            ID = 1,
-                            CategoryID = 1,
+                            Id = 1,
+                            CategoryId = 1,
                             Title = "Sub1"
                         },
                         new Subcategory
                         {
-                            ID = 2,
-                            CategoryID = 1,
+                            Id = 2,
+                            CategoryId = 1,
                             Title = "Sub2"
                         }
                     }
                 },
                 new Category
                 {
-                    ID = 2,
+                    Id = 2,
                     Title = "Cat2",
                     Subcategories = new List<Subcategory>
                     {
                         new Subcategory
                         {
-                            ID = 3,
-                            CategoryID = 2,
+                            Id = 3,
+                            CategoryId = 2,
                             Title = "Sub3"
                         },
                         new Subcategory
                         {
-                            ID = 4,
-                            CategoryID = 2,
+                            Id = 4,
+                            CategoryId = 2,
                             Title = "Sub4"
                         }
                     }
@@ -57,23 +57,23 @@ namespace online_shop_backend.tests.Mocks
             {
                 new Product
                 {
-                    ID = 1,
+                    Id = 1,
                     Name = "Product1",
                     AvailableQuantity = 10,
                     Price = 15.5m,
-                    CategoryID = 1,
-                    SubcategoryID = 1,
-                    ProducerID = 1
+                    CategoryId = 1,
+                    SubcategoryId = 1,
+                    ProducerId = 1
                 },
                 new Product
                 {
-                    ID = 2,
+                    Id = 2,
                     Name = "Product2",
                     AvailableQuantity = 20,
                     Price = 25.5m,
-                    CategoryID = 2,
-                    SubcategoryID = 3,
-                    ProducerID = 2
+                    CategoryId = 2,
+                    SubcategoryId = 3,
+                    ProducerId = 2
                 }
             };
         }
@@ -93,13 +93,13 @@ namespace online_shop_backend.tests.Mocks
 
         public void UpdateCategory(Category category)
         {
-            Categories.Remove(Categories.First(cat => cat.ID == category.ID));
+            Categories.Remove(Categories.First(cat => cat.Id == category.Id));
             Categories.Add(category);
         }
 
         public Category GetCategory(int id)
         {
-            return Categories.First(cat => cat.ID == id);
+            return Categories.First(cat => cat.Id == id);
         }
 
         public ICollection<Category> GetAllCategories()
@@ -109,12 +109,12 @@ namespace online_shop_backend.tests.Mocks
 
         public ICollection<Subcategory> GetSubcategoriesForCategory(int id)
         {
-            return Categories.First(cat => cat.ID == id)?.Subcategories;
+            return Categories.First(cat => cat.Id == id)?.Subcategories;
         }
 
         public ICollection<Product> GetProductsForCategory(int id, int page = 1, int limit = 20)
         {
-            return Products.Where(p => p.CategoryID == id).ToList();
+            return Products.Where(p => p.CategoryId == id).ToList();
         }
     }
 }

@@ -5,44 +5,43 @@ using online_shop_backend.Models.DTO;
 using online_shop_backend.Models.Entities;
 using online_shop_backend.Repositories.Interfaces;
 
-namespace online_shop_backend.Controllers
+namespace online_shop_backend.Controllers;
+
+[Route("/api/category")]
+public class CategoryController(ICategoriesRepository categoriesRepository) : Controller
 {
-    [Route("/api/category")]
-    public class CategoryController(ICategoriesRepository categoriesRepository) : Controller
+    [HttpGet]
+    public ICollection<Category> Index()
     {
-        [HttpGet]
-        public ICollection<Category> Index()
-        {
-            return categoriesRepository.GetAllCategories();
-        }
+        return categoriesRepository.GetAllCategories();
+    }
 
-        [HttpGet("{id:required}")]
-        public CategoryPageDTO Category(int id, int? page, int? limit)
+    [HttpGet("{id:required}")]
+    public CategoryPageDto Category(int id, int? page, int? limit)
+    {
+        var result = new CategoryPageDto
         {
-            var result = new CategoryPageDTO
-            {
-                Category = categoriesRepository.GetCategory(id),
-                Subcategories = categoriesRepository.GetSubcategoriesForCategory(id),
-                Products = categoriesRepository.GetProductsForCategory(id, page ?? 1, limit ?? 20)
-            };
+            Category = categoriesRepository.GetCategory(id),
+            Subcategories = categoriesRepository.GetSubcategoriesForCategory(id),
+            Products = categoriesRepository.GetProductsForCategory(id, page ?? 1, limit ?? 20)
+        };
 
-            return result;
-        }
+        return result;
+    }
 
-        [Authorize]
-        [HttpPost]
-        public IActionResult Create([FromBody] CategoryDto category)
-        {
-            categoriesRepository.AddCategory(category);
-            return Ok();
-        }
+    [Authorize]
+    [HttpPost]
+    public IActionResult Create([FromBody] CategoryDto category)
+    {
+        categoriesRepository.AddCategory(category);
+        return Ok();
+    }
 
-        [Authorize]
-        [HttpDelete("{id:required}")]
-        public IActionResult Delete(int id)
-        {
-            categoriesRepository.RemoveCategory(categoriesRepository.GetCategory(id));
-            return Ok(); 
-        }
+    [Authorize]
+    [HttpDelete("{id:required}")]
+    public IActionResult Delete(int id)
+    {
+        categoriesRepository.RemoveCategory(categoriesRepository.GetCategory(id));
+        return Ok();
     }
 }

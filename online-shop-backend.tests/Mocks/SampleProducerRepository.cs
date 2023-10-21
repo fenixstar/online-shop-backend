@@ -13,14 +13,14 @@ namespace online_shop_backend.tests.Mocks
             {
                 new Producer
                 {
-                    ID = 1,
+                    Id = 1,
                     Name = "Producer1",
                     Details = new List<ProducerDetail>
                     {
                         new ProducerDetail
                         {
-                            ID = 1,
-                            ProducerID = 1,
+                            Id = 1,
+                            ProducerId = 1,
                             Address1 = "QWERTY",
                             Address2 = "ASDF",
                             City = "ZXCV",
@@ -32,14 +32,14 @@ namespace online_shop_backend.tests.Mocks
                 },
                 new Producer
                 {
-                    ID = 2,
+                    Id = 2,
                     Name = "Producer2",
                     Details = new List<ProducerDetail>
                     {
                         new ProducerDetail
                         {
-                            ID = 2,
-                            ProducerID = 2,
+                            Id = 2,
+                            ProducerId = 2,
                             Address1 = "UIOP",
                             Address2 = "BNM",
                             City = "TYU",
@@ -66,13 +66,13 @@ namespace online_shop_backend.tests.Mocks
 
         public void UpdateProducer(Producer producer)
         {
-            Producers.Remove(Producers.First(p => p.ID == producer.ID));
+            Producers.Remove(Producers.First(p => p.Id == producer.Id));
             Producers.Add(producer);
         }
 
         public Producer GetProducer(int id)
         {
-            return Producers.First(p => p.ID == id);
+            return Producers.First(p => p.Id == id);
         }
 
         public ICollection<Producer> GetAllProducers()
@@ -82,7 +82,7 @@ namespace online_shop_backend.tests.Mocks
 
         public ICollection<ProducerDetail> GetDetailsForProducer(int id)
         {
-            return Producers.First(p => p.ID == id)?.Details;
+            return Producers.First(p => p.Id == id)?.Details;
         }
     }
 }

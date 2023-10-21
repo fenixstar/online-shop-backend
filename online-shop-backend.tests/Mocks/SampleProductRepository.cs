@@ -13,53 +13,53 @@ namespace online_shop_backend.tests.Mocks
             {
                 new Product
                 {
-                    ID = 1,
+                    Id = 1,
                     Name = "Product1",
                     AvailableQuantity = 10,
                     Price = 15.5m,
-                    CategoryID = 1,
+                    CategoryId = 1,
                     Category = new Category
                     {
-                        ID = 1,
+                        Id = 1,
                         Title = "Cat1"
                     },
-                    SubcategoryID = 1,
+                    SubcategoryId = 1,
                     Subcategory = new Subcategory
                     {
-                        ID = 1,
+                        Id = 1,
                         Title = "Sub1",
-                        CategoryID = 1
+                        CategoryId = 1
                     },
-                    ProducerID = 1,
+                    ProducerId = 1,
                     Producer = new Producer
                     {
-                        ID = 1,
+                        Id = 1,
                         Name = "Producer1"
                     }
                 },
                 new Product
                 {
-                    ID = 2,
+                    Id = 2,
                     Name = "Product2",
                     AvailableQuantity = 20,
                     Price = 25.5m,
-                    CategoryID = 2,
+                    CategoryId = 2,
                     Category = new Category
                     {
-                        ID = 2,
+                        Id = 2,
                         Title = "Cat2"
                     },
-                    SubcategoryID = 3,
+                    SubcategoryId = 3,
                     Subcategory = new Subcategory
                     {
-                        ID = 3,
+                        Id = 3,
                         Title = "Sub3",
-                        CategoryID = 2
+                        CategoryId = 2
                     },
-                    ProducerID = 2,
+                    ProducerId = 2,
                     Producer = new Producer
                     {
-                        ID = 2,
+                        Id = 2,
                         Name = "Producer2"
                     }
                 }
@@ -80,13 +80,13 @@ namespace online_shop_backend.tests.Mocks
 
         public void UpdateProduct(Product product)
         {
-            Products.Remove(Products.First(p => p.ID == product.ID));
+            Products.Remove(Products.First(p => p.Id == product.Id));
             Products.Add(product);
         }
 
         public Product GetProduct(long id)
         {
-            return Products.First(p => p.ID == id);
+            return Products.First(p => p.Id == id);
         }
 
         public ICollection<Product> GetAllProducts()
@@ -96,32 +96,32 @@ namespace online_shop_backend.tests.Mocks
 
         public Producer GetProducerForProduct(long id)
         {
-            return Products.First(p => p.ID == id)?.Producer;
+            return Products.First(p => p.Id == id)?.Producer;
         }
 
         public Category GetCategoryForProduct(long id)
         {
-            return Products.First(p => p.ID == id)?.Category;
+            return Products.First(p => p.Id == id)?.Category;
         }
 
         public Subcategory GetSubcategoryForProduct(long id)
         {
-            return Products.First(p => p.ID == id)?.Subcategory;
+            return Products.First(p => p.Id == id)?.Subcategory;
         }
 
         public ICollection<Review> GetReviewsForProduct(long id)
         {
-            return Products.First(p => p.ID == id)?.Reviews;
+            return Products.First(p => p.Id == id)?.Reviews;
         }
 
         public ICollection<Discount> GetDiscountsForProduct(long id)
         {
-            return Products.First(p => p.ID == id)?.Discounts;
+            return Products.First(p => p.Id == id)?.Discounts;
         }
 
         public bool CheckIfProductIsAvailable(long id, int neededQuantity = 0)
         {
-            return Products.First(p => p.ID == id).AvailableQuantity >= neededQuantity;
+            return Products.First(p => p.Id == id).AvailableQuantity >= neededQuantity;
         }
     }
 }

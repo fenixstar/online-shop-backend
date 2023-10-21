@@ -1,49 +1,82 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using online_shop_backend.Models.Entities;
 using online_shop_backend.Repositories.Interfaces;
 
-namespace online_shop_backend.Controllers
+namespace online_shop_backend.Controllers;
+
+[Route("/api/product")]
+public class ProductController(IProductRepository productRepository, IDiscountRepository discountRepository)
+    : Controller
 {
-    [Route("/api/product")]
-    public class ProductController : Controller
+    [HttpGet("{id:required}")]
+    public Product Index(long id)
     {
-        private readonly IDiscountRepository discountRepository;
-        private readonly IProductRepository productRepository;
+        var result = productRepository.GetProduct(id);
+        result.Producer = productRepository.GetProducerForProduct(id);
+        result.Category = productRepository.GetCategoryForProduct(id);
+        result.Subcategory = productRepository.GetSubcategoryForProduct(id);
+        result.Discounts = productRepository.GetDiscountsForProduct(id);
 
-        public ProductController(IProductRepository productRepository, IDiscountRepository discountRepository)
-        {
-            this.productRepository = productRepository;
-            this.discountRepository = discountRepository;
-        }
+        return result;
+    }
 
-        [HttpGet("{id:required}")]
-        public Product Index(long id)
-        {
-            var result = productRepository.GetProduct(id);
-            result.Producer = productRepository.GetProducerForProduct(id);
-            result.Category = productRepository.GetCategoryForProduct(id);
-            result.Subcategory = productRepository.GetSubcategoryForProduct(id);
-            result.Discounts = productRepository.GetDiscountsForProduct(id);
+    [HttpGet("selected")]
+    public List<Product> GetSelectedProducts([FromQuery] int[] ids)
+    {
+        var results = ids?.Select(id => productRepository.GetProduct(id)).ToList();
 
-            return result;
-        }
+        foreach (var product in results) product.Producer = productRepository.GetProducerForProduct(product.Id);
 
-        [HttpGet("selected")]
-        public List<Product> GetSelectedProducts([FromQuery] int[] ids)
-        {
-            var results = ids?.Select(id => productRepository.GetProduct(id)).ToList();
+        return results;
+    }
 
-            foreach (var product in results) product.Producer = productRepository.GetProducerForProduct(product.ID);
+    [HttpGet("discounts")]
+    public ICollection<Discount> Discounts()
+    {
+        return discountRepository.GetAllDiscounts();
+    }
 
-            return results;
-        }
+    [HttpGet("list")]
+    public ICollection<Product> List(int categoryId, int subCategoryId)
+    {
+        var products = productRepository
+            .GetAllProducts()
+            .Where(p => p.CategoryId == categoryId && p.SubcategoryId == subCategoryId)
+            .ToList();
 
-        [HttpGet("discounts")]
-        public ICollection<Discount> Discounts()
-        {
-            return discountRepository.GetAllDiscounts();
-        }
+        return products;
+    }
+
+    [HttpPost]
+    [Authorize]
+    public IActionResult Create([FromBody] Product product)
+    {
+        productRepository.AddProduct(product);
+        return Ok();
+    }
+
+    [HttpDelete("{id:required}")]
+    [Authorize]
+    public IActionResult Delete(long id)
+    {
+        productRepository.RemoveProduct(productRepository.GetProduct(id));
+        return Ok();
+    }
+    
+    [HttpPut]
+    [Authorize]
+    public IActionResult Update([FromBody] Product product)
+    {
+        productRepository.UpdateProduct(product);
+        return Ok(product);
+    }
+    
+    [HttpGet("available")]
+    public bool CheckIfProductIsAvailable(long id, int neededQuantity = 0)
+    {
+        return productRepository.CheckIfProductIsAvailable(id, neededQuantity);
     }
 }

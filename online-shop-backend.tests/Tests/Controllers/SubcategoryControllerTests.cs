@@ -36,7 +36,7 @@ namespace online_shop_backend.tests.Tests.Controllers
         {
             var result = subcategoryController.Subcategory(id, null, null);
 
-            var expected = new SubcategoryPageDTO
+            var expected = new SubcategoryPageDto
             {
                 Subcategory = subcategoriesRepository.GetSubcategory(id),
                 Products = subcategoriesRepository.GetProductsForSubcategory(id)

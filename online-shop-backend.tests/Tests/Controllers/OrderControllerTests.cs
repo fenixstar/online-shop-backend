@@ -35,16 +35,16 @@ namespace online_shop_backend.tests.Tests.Controllers
         [Fact]
         public void AddsOrderCorrectly()
         {
-            var cartObject = new CartDTO
+            var cartObject = new CartDto
             {
                 Note = "Note1",
-                ShippingMethodID = 1,
+                ShippingMethodId = 1,
                 Username = "User1",
-                CartItems = new List<CartItemDTO>
+                CartItems = new List<CartItemDto>
                 {
-                    new CartItemDTO
+                    new CartItemDto
                     {
-                        ProductID = 1,
+                        ProductId = 1,
                         Quantity = 10
                     }
                 }
@@ -59,16 +59,16 @@ namespace online_shop_backend.tests.Tests.Controllers
         [Fact]
         public void DoesNotAddOrderIfProductIsNotAvailable()
         {
-            var cartObject = new CartDTO
+            var cartObject = new CartDto
             {
                 Note = "Note1",
-                ShippingMethodID = 1,
+                ShippingMethodId = 1,
                 Username = "User1",
-                CartItems = new List<CartItemDTO>
+                CartItems = new List<CartItemDto>
                 {
-                    new CartItemDTO
+                    new CartItemDto
                     {
-                        ProductID = 1,
+                        ProductId = 1,
                         Quantity = 25
                     }
                 }

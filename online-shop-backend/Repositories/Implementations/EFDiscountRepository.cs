@@ -4,48 +4,47 @@ using online_shop_backend.Models.Entities;
 using online_shop_backend.Models.Identity;
 using online_shop_backend.Repositories.Interfaces;
 
-namespace online_shop_backend.Repositories.Implementations
+namespace online_shop_backend.Repositories.Implementations;
+
+public class EfDiscountRepository : IDiscountRepository
 {
-    public class EFDiscountRepository : IDiscountRepository
+    private readonly ApplicationDbContext context;
+
+    public EfDiscountRepository(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext context;
+        this.context = context;
+    }
 
-        public EFDiscountRepository(ApplicationDbContext context)
-        {
-            this.context = context;
-        }
+    public void AddDiscount(Discount discount)
+    {
+        context.Discounts.Add(discount);
+        context.SaveChanges();
+    }
 
-        public void AddDiscount(Discount discount)
-        {
-            context.Discounts.Add(discount);
-            context.SaveChanges();
-        }
+    public void RemoveDiscount(Discount discount)
+    {
+        context.Discounts.Remove(discount);
+        context.SaveChanges();
+    }
 
-        public void RemoveDiscount(Discount discount)
-        {
-            context.Discounts.Remove(discount);
-            context.SaveChanges();
-        }
+    public void UpdateDiscount(Discount discount)
+    {
+        context.Discounts.Update(discount);
+        context.SaveChanges();
+    }
 
-        public void UpdateDiscount(Discount discount)
-        {
-            context.Discounts.Update(discount);
-            context.SaveChanges();
-        }
+    public Discount GetDiscount(long id)
+    {
+        return context.Discounts.Find(id);
+    }
 
-        public Discount GetDiscount(long id)
-        {
-            return context.Discounts.Find(id);
-        }
+    public ICollection<Discount> GetAllDiscounts()
+    {
+        return context.Discounts.ToList();
+    }
 
-        public ICollection<Discount> GetAllDiscounts()
-        {
-            return context.Discounts.ToList();
-        }
-
-        public Product GetProductForDiscount(long id)
-        {
-            return context.Discounts.Find(id)?.Product;
-        }
+    public Product GetProductForDiscount(long id)
+    {
+        return context.Discounts.Find(id)?.Product;
     }
 }

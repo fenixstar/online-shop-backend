@@ -15,7 +15,7 @@ namespace online_shop_backend.tests.Mocks
             {
                 new Order
                 {
-                    ID = 1,
+                    Id = 1,
                     ApplicationUser = new ApplicationUser
                     {
                         Id = "1",
@@ -24,7 +24,7 @@ namespace online_shop_backend.tests.Mocks
                     },
                     ShippingMethod = new ShippingMethod
                     {
-                        ID = 1,
+                        Id = 1,
                         Name = "Method1",
                         Price = 2.99m
                     },
@@ -34,18 +34,18 @@ namespace online_shop_backend.tests.Mocks
                     {
                         new OrderDetail
                         {
-                            ID = 1,
-                            OrderID = 1,
+                            Id = 1,
+                            OrderId = 1,
                             Quantity = 5,
                             UnitPrice = 15.5m,
                             Product = new Product
                             {
-                                ID = 1,
+                                Id = 1,
                                 Name = "Product1",
                                 AvailableQuantity = 10,
                                 Price = 15.5m,
-                                CategoryID = 1,
-                                SubcategoryID = 1
+                                CategoryId = 1,
+                                SubcategoryId = 1
                             }
                         }
                     }
@@ -67,13 +67,13 @@ namespace online_shop_backend.tests.Mocks
 
         public void UpdateOrder(Order order)
         {
-            Orders.Remove(Orders.First(o => o.ID == order.ID));
+            Orders.Remove(Orders.First(o => o.Id == order.Id));
             Orders.Add(order);
         }
 
         public Order GetOrder(long id)
         {
-            return Orders.First(o => o.ID == id);
+            return Orders.First(o => o.Id == id);
         }
 
         public ICollection<Order> GetAllOrders()

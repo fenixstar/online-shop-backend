@@ -1,15 +1,14 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace online_shop_backend.Models.Entities
+namespace online_shop_backend.Models.Entities;
+
+public class Subcategory
 {
-    public class Subcategory
-    {
-        public int ID { get; set; }
+    public int Id { get; set; }
 
-        public int CategoryID { get; set; }
+    public int CategoryId { get; set; }
 
-        [Required] [StringLength(200)] public string Title { get; set; }
+    [Required] [StringLength(200)] public string Title { get; set; }
 
-        public Category Category { get; set; }
-    }
+    public Category Category { get; set; }
 }

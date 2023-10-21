@@ -20,7 +20,6 @@
           "net8.0"
         ],
         "sources": {
-          "D:\\Work\\infozont\\pckgs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -104,7 +103,6 @@
           "net8.0"
         ],
         "sources": {
-          "D:\\Work\\infozont\\pckgs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -123,6 +121,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "EASendMail": {
+              "target": "Package",
+              "version": "[7.9.2, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.0-rc.1.23421.29, )"

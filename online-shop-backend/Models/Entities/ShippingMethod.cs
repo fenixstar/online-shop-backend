@@ -1,13 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace online_shop_backend.Models.Entities
+namespace online_shop_backend.Models.Entities;
+
+public class ShippingMethod
 {
-    public class ShippingMethod
-    {
-        public int ID { get; set; }
+    public int Id { get; set; }
 
-        [Required] [StringLength(200)] public string Name { get; set; }
+    [Required] [StringLength(200)] public string Name { get; set; }
 
-        [Required] public decimal Price { get; set; }
-    }
+    [Required] public decimal Price { get; set; }
 }

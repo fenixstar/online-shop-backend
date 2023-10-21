@@ -13,13 +13,13 @@ namespace online_shop_backend.tests.Mocks
             {
                 new ShippingMethod
                 {
-                    ID = 1,
+                    Id = 1,
                     Name = "Method1",
                     Price = 2.99m
                 },
                 new ShippingMethod
                 {
-                    ID = 2,
+                    Id = 2,
                     Name = "Method2",
                     Price = 4.99m
                 }
@@ -40,13 +40,13 @@ namespace online_shop_backend.tests.Mocks
 
         public void UpdateShippingMethod(ShippingMethod shippingMethod)
         {
-            ShippingMethods.Remove(ShippingMethods.First(sm => sm.ID == shippingMethod.ID));
+            ShippingMethods.Remove(ShippingMethods.First(sm => sm.Id == shippingMethod.Id));
             ShippingMethods.Add(shippingMethod);
         }
 
         public ShippingMethod GetShippingMethod(int id)
         {
-            return ShippingMethods.First(sm => sm.ID == id);
+            return ShippingMethods.First(sm => sm.Id == id);
         }
 
         public ICollection<ShippingMethod> GetAllShippingMethods()

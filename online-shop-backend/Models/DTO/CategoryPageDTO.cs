@@ -3,7 +3,7 @@ using online_shop_backend.Models.Entities;
 
 namespace online_shop_backend.Models.DTO;
 
-public class CategoryPageDTO
+public class CategoryPageDto
 {
     public Category Category { get; set; }
     public ICollection<Subcategory> Subcategories { get; set; }

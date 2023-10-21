@@ -1,6 +1,6 @@
 namespace online_shop_backend.Models.DTO;
 
-public class AddressDTO
+public class AddressDto
 {
     public string Username { get; set; }
     public string Address1 { get; set; }

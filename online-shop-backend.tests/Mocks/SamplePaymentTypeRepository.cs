@@ -13,7 +13,7 @@ namespace online_shop_backend.tests.Mocks
             {
                 new PaymentType
                 {
-                    ID = 1,
+                    Id = 1,
                     Name = "PaymentType1"
                 }
             };
@@ -33,12 +33,12 @@ namespace online_shop_backend.tests.Mocks
 
         public void UpdatePaymentType(PaymentType paymentType)
         {
-            PaymentTypes.Remove(PaymentTypes.First(pt => pt.ID == paymentType.ID));
+            PaymentTypes.Remove(PaymentTypes.First(pt => pt.Id == paymentType.Id));
         }
 
         public PaymentType GetPaymentType(int id)
         {
-            return PaymentTypes.First(pt => pt.ID == id);
+            return PaymentTypes.First(pt => pt.Id == id);
         }
 
         public ICollection<PaymentType> GetAllPaymentTypes()

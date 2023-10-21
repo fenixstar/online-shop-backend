@@ -1,7 +1,7 @@
 namespace online_shop_backend.Models.DTO;
 
-public class AccountPageDTO
+public class AccountPageDto
 {
-    public UserDTO User { get; set; }
-    public AddressDTO Address { get; set; }
+    public UserDto User { get; set; }
+    public AddressDto Address { get; set; }
 }

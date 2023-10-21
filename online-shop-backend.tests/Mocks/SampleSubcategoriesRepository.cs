@@ -13,23 +13,23 @@ namespace online_shop_backend.tests.Mocks
             {
                 new Subcategory
                 {
-                    ID = 1,
+                    Id = 1,
                     Title = "Sub1",
-                    CategoryID = 1,
+                    CategoryId = 1,
                     Category = new Category
                     {
-                        ID = 1,
+                        Id = 1,
                         Title = "Cat1"
                     }
                 },
                 new Subcategory
                 {
-                    ID = 3,
+                    Id = 3,
                     Title = "Sub3",
-                    CategoryID = 2,
+                    CategoryId = 2,
                     Category = new Category
                     {
-                        ID = 2,
+                        Id = 2,
                         Title = "Cat2"
                     }
                 }
@@ -39,23 +39,23 @@ namespace online_shop_backend.tests.Mocks
             {
                 new Product
                 {
-                    ID = 1,
+                    Id = 1,
                     Name = "Product1",
                     AvailableQuantity = 10,
                     Price = 15.5m,
-                    CategoryID = 1,
-                    SubcategoryID = 1,
-                    ProducerID = 1
+                    CategoryId = 1,
+                    SubcategoryId = 1,
+                    ProducerId = 1
                 },
                 new Product
                 {
-                    ID = 2,
+                    Id = 2,
                     Name = "Product2",
                     AvailableQuantity = 20,
                     Price = 25.5m,
-                    CategoryID = 2,
-                    SubcategoryID = 3,
-                    ProducerID = 2
+                    CategoryId = 2,
+                    SubcategoryId = 3,
+                    ProducerId = 2
                 }
             };
         }
@@ -75,13 +75,13 @@ namespace online_shop_backend.tests.Mocks
 
         public void UpdateSubcategory(Subcategory subcategory)
         {
-            Subcategories.Remove(Subcategories.First(sub => sub.ID == subcategory.ID));
+            Subcategories.Remove(Subcategories.First(sub => sub.Id == subcategory.Id));
             Subcategories.Add(subcategory);
         }
 
         public Subcategory GetSubcategory(int id)
         {
-            return Subcategories.First(sub => sub.ID == id);
+            return Subcategories.First(sub => sub.Id == id);
         }
 
         public ICollection<Subcategory> GetAllSubcategories()
@@ -91,12 +91,12 @@ namespace online_shop_backend.tests.Mocks
 
         public Category GetCategoryForSubcategory(int id)
         {
-            return Subcategories.First(sub => sub.ID == id)?.Category;
+            return Subcategories.First(sub => sub.Id == id)?.Category;
         }
 
         public ICollection<Product> GetProductsForSubcategory(int id, int page = 1, int limit = 20)
         {
-            return Products.Where(p => p.SubcategoryID == id).ToList();
+            return Products.Where(p => p.SubcategoryId == id).ToList();
         }
     }
 }
