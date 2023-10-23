@@ -21,13 +21,11 @@ namespace online_shop_backend;
 
 public class Startup(IConfiguration configuration)
 {
-    private IConfiguration Configuration { get; } = configuration;
-
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddSwaggerGen();
         services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseNpgsql(Configuration["ConnectionStrings:OnlineShopDatabase"]));
+            options.UseNpgsql(configuration["ConnectionStrings:OnlineShopDatabase"]));
 
         services.AddTransient<ICategoriesRepository, EfCategoriesRepository>();
         services.AddTransient<ISubcategoriesRepository, EfSubcategoriesRepository>();
@@ -46,7 +44,9 @@ public class Startup(IConfiguration configuration)
         services.AddTransient<IShippingMethodRepository, EfShippingMethodRepository>();
         services.AddTransient<IRefreshTokenRepository, EfRefreshTokenRepository>();
         services.AddTransient<IMailService, MailService>();
+        services.AddTransient<IPictureService, PictureService>();
 
+        
         services.AddTransient<TokenFactory>();
 
         services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -65,7 +65,7 @@ public class Startup(IConfiguration configuration)
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.ASCII.GetBytes(Configuration["SecretKey"])),
+                        Encoding.ASCII.GetBytes(configuration["SecretKey"] ?? string.Empty)),
                     ValidateIssuer = false,
                     ValidateAudience = false,
                     RequireExpirationTime = true,

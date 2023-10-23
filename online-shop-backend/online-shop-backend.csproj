@@ -40,6 +40,19 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         </Content>
+        <Content Remove="Migrations — копия\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Migrations — копия\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Migrations — копия\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Migrations — копия\**" />
     </ItemGroup>
 
 </Project>

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using online_shop_backend.Models.Identity;
@@ -11,9 +12,11 @@ using online_shop_backend.Models.Identity;
 namespace online_shop_backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231022104151_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,19 +53,19 @@ namespace online_shop_backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "663b9e9b-7b5b-40d0-a6b4-f50c88fb73cf",
+                            Id = "29e8a1a5-329d-4128-8ff6-e5caf308116f",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "bada50d8-9a56-4b77-b621-777cf3a02396",
+                            Id = "4b09ceee-bbe9-44ae-a4da-3c02c456ffc5",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "90786458-d132-4e38-b092-ce5e860941cf",
+                            Id = "5c5f99eb-46a9-4e2d-88ae-bf3d7df4c5de",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         });
@@ -249,11 +252,11 @@ namespace online_shop_backend.Migrations
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Category", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Icon")
                         .HasColumnType("text");
@@ -263,60 +266,60 @@ namespace online_shop_backend.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("categories", (string)null);
 
                     b.HasData(
                         new
                         {
-                            ID = 1,
+                            Id = 1,
                             Title = "Собаки"
                         },
                         new
                         {
-                            ID = 2,
+                            Id = 2,
                             Title = "Кошки"
                         },
                         new
                         {
-                            ID = 3,
+                            Id = 3,
                             Title = "Грызуны"
                         },
                         new
                         {
-                            ID = 4,
+                            Id = 4,
                             Title = "Рыбы"
                         },
                         new
                         {
-                            ID = 5,
+                            Id = 5,
                             Title = "Птицы"
                         },
                         new
                         {
-                            ID = 6,
+                            Id = 6,
                             Title = "Риптилии"
                         },
                         new
                         {
-                            ID = 7,
+                            Id = 7,
                             Title = "Другие питомцы"
                         },
                         new
                         {
-                            ID = 8,
+                            Id = 8,
                             Title = "Уход и аксессуары"
                         });
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Discount", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("timestamp with time zone");
@@ -324,57 +327,57 @@ namespace online_shop_backend.Migrations
                     b.Property<decimal>("Percentage")
                         .HasColumnType("numeric");
 
-                    b.Property<long>("ProductID")
+                    b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("timestamp with time zone");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ProductID");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("discounts", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Invoice", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("ApplicationUserID")
+                    b.Property<string>("ApplicationUserId")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("DateIssued")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<long>("OrderID")
+                    b.Property<long>("OrderId")
                         .HasColumnType("bigint");
 
                     b.Property<decimal>("TotalValue")
                         .HasColumnType("numeric");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserID");
+                    b.HasIndex("ApplicationUserId");
 
-                    b.HasIndex("OrderID");
+                    b.HasIndex("OrderId");
 
                     b.ToTable("invoices", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.InvoiceDetail", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("InvoiceID")
+                    b.Property<long>("InvoiceId")
                         .HasColumnType("bigint");
 
                     b.Property<decimal>("ItemPrice")
@@ -383,27 +386,27 @@ namespace online_shop_backend.Migrations
                     b.Property<int>("ItemQuantity")
                         .HasColumnType("integer");
 
-                    b.Property<long>("ProductID")
+                    b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("InvoiceID");
+                    b.HasIndex("InvoiceId");
 
-                    b.HasIndex("ProductID");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("invoice_details", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Order", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("ApplicationUserID")
+                    b.Property<string>("ApplicationUserId")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("DateAndTime")
@@ -413,33 +416,33 @@ namespace online_shop_backend.Migrations
                         .HasMaxLength(400)
                         .HasColumnType("character varying(400)");
 
-                    b.Property<int>("ShippingMethodID")
+                    b.Property<int>("ShippingMethodId")
                         .HasColumnType("integer");
 
                     b.Property<decimal>("ShippingMethodPrice")
                         .HasColumnType("numeric");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserID");
+                    b.HasIndex("ApplicationUserId");
 
-                    b.HasIndex("ShippingMethodID");
+                    b.HasIndex("ShippingMethodId");
 
                     b.ToTable("orders", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.OrderDetail", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("OrderID")
+                    b.Property<long>("OrderId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("ProductID")
+                    b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("Quantity")
@@ -448,30 +451,30 @@ namespace online_shop_backend.Migrations
                     b.Property<decimal>("UnitPrice")
                         .HasColumnType("numeric");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("OrderID");
+                    b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductID");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("order_details", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.PaymentMethod", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("ApplicationUserID")
+                    b.Property<long>("ApplicationUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("ApplicationUserId")
+                    b.Property<string>("ApplicationUserId1")
                         .HasColumnType("text");
 
-                    b.Property<int>("PaymentTypeID")
+                    b.Property<int>("PaymentTypeId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Value")
@@ -479,58 +482,58 @@ namespace online_shop_backend.Migrations
                         .HasMaxLength(512)
                         .HasColumnType("character varying(512)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("ApplicationUserId1");
 
-                    b.HasIndex("PaymentTypeID");
+                    b.HasIndex("PaymentTypeId");
 
                     b.ToTable("payment_methods", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.PaymentType", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("payment_types", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Producer", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("producers", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.ProducerDetail", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Address1")
                         .HasMaxLength(200)
@@ -556,28 +559,28 @@ namespace online_shop_backend.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)");
 
-                    b.Property<int>("ProducerID")
+                    b.Property<int>("ProducerId")
                         .HasColumnType("integer");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ProducerID");
+                    b.HasIndex("ProducerId");
 
                     b.ToTable("producer_details", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Product", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<int>("AvailableQuantity")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CategoryID")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
@@ -588,32 +591,53 @@ namespace online_shop_backend.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
-                    b.Property<int>("ProducerID")
+                    b.Property<int>("ProducerId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("SubcategoryID")
+                    b.Property<int>("SubcategoryId")
                         .HasColumnType("integer");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CategoryID");
+                    b.HasIndex("CategoryId");
 
-                    b.HasIndex("ProducerID");
+                    b.HasIndex("ProducerId");
 
-                    b.HasIndex("SubcategoryID");
+                    b.HasIndex("SubcategoryId");
 
                     b.ToTable("products", (string)null);
                 });
 
-            modelBuilder.Entity("online_shop_backend.Models.Entities.RefreshToken", b =>
+            modelBuilder.Entity("online_shop_backend.Models.Entities.ProductPicture", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("ApplicationUserID")
+                    b.Property<string>("PictureUrl")
+                        .HasColumnType("text");
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("product_pictures", (string)null);
+                });
+
+            modelBuilder.Entity("online_shop_backend.Models.Entities.RefreshToken", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("ApplicationUserId")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("ExpiryDate")
@@ -622,25 +646,25 @@ namespace online_shop_backend.Migrations
                     b.Property<string>("Token")
                         .HasColumnType("text");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserID");
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("refresh_tokens", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Review", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("ApplicationUserID")
+                    b.Property<long>("ApplicationUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("ApplicationUserId")
+                    b.Property<string>("ApplicationUserId1")
                         .HasColumnType("text");
 
                     b.Property<string>("Content")
@@ -648,28 +672,28 @@ namespace online_shop_backend.Migrations
                         .HasMaxLength(1024)
                         .HasColumnType("character varying(1024)");
 
-                    b.Property<long>("ProductID")
+                    b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("Rating")
                         .HasColumnType("integer");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("ApplicationUserId1");
 
-                    b.HasIndex("ProductID");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("reviews", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.ShippingMethod", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -679,20 +703,20 @@ namespace online_shop_backend.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("shipping_methods", (string)null);
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.Subcategory", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryID")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Title")
@@ -700,196 +724,196 @@ namespace online_shop_backend.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CategoryID");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("subcategories", (string)null);
 
                     b.HasData(
                         new
                         {
-                            ID = 1,
-                            CategoryID = 1,
+                            Id = 1,
+                            CategoryId = 1,
                             Title = "Корм для собак"
                         },
                         new
                         {
-                            ID = 2,
-                            CategoryID = 1,
+                            Id = 2,
+                            CategoryId = 1,
                             Title = "Игрушки для собак"
                         },
                         new
                         {
-                            ID = 3,
-                            CategoryID = 1,
+                            Id = 3,
+                            CategoryId = 1,
                             Title = "Ошейники и поводкик"
                         },
                         new
                         {
-                            ID = 4,
-                            CategoryID = 1,
+                            Id = 4,
+                            CategoryId = 1,
                             Title = "Туалеты"
                         },
                         new
                         {
-                            ID = 5,
-                            CategoryID = 1,
+                            Id = 5,
+                            CategoryId = 1,
                             Title = "Миски и поилки"
                         },
                         new
                         {
-                            ID = 6,
-                            CategoryID = 2,
+                            Id = 6,
+                            CategoryId = 2,
                             Title = "Корм для кошек"
                         },
                         new
                         {
-                            ID = 7,
-                            CategoryID = 2,
+                            Id = 7,
+                            CategoryId = 2,
                             Title = "Игрушки для кошек"
                         },
                         new
                         {
-                            ID = 8,
-                            CategoryID = 2,
+                            Id = 8,
+                            CategoryId = 2,
                             Title = "Ошейники и поводки"
                         },
                         new
                         {
-                            ID = 9,
-                            CategoryID = 2,
+                            Id = 9,
+                            CategoryId = 2,
                             Title = "Когтеточки"
                         },
                         new
                         {
-                            ID = 10,
-                            CategoryID = 2,
+                            Id = 10,
+                            CategoryId = 2,
                             Title = "Туалеты"
                         },
                         new
                         {
-                            ID = 11,
-                            CategoryID = 2,
+                            Id = 11,
+                            CategoryId = 2,
                             Title = "Миски и поилки"
                         },
                         new
                         {
-                            ID = 12,
-                            CategoryID = 3,
+                            Id = 12,
+                            CategoryId = 3,
                             Title = "Корм для грызунов"
                         },
                         new
                         {
-                            ID = 13,
-                            CategoryID = 3,
+                            Id = 13,
+                            CategoryId = 3,
                             Title = "Вольеры и клетки"
                         },
                         new
                         {
-                            ID = 14,
-                            CategoryID = 3,
+                            Id = 14,
+                            CategoryId = 3,
                             Title = "Игрушки для грызунов"
                         },
                         new
                         {
-                            ID = 15,
-                            CategoryID = 3,
+                            Id = 15,
+                            CategoryId = 3,
                             Title = "Миски и поилки"
                         },
                         new
                         {
-                            ID = 16,
-                            CategoryID = 4,
+                            Id = 16,
+                            CategoryId = 4,
                             Title = "Корм для рыбок"
                         },
                         new
                         {
-                            ID = 17,
-                            CategoryID = 4,
+                            Id = 17,
+                            CategoryId = 4,
                             Title = "Прочая переферия для рыбок"
                         },
                         new
                         {
-                            ID = 18,
-                            CategoryID = 5,
+                            Id = 18,
+                            CategoryId = 5,
                             Title = "Вольеры и клетки"
                         },
                         new
                         {
-                            ID = 19,
-                            CategoryID = 5,
+                            Id = 19,
+                            CategoryId = 5,
                             Title = "Корм для птиц"
                         },
                         new
                         {
-                            ID = 20,
-                            CategoryID = 5,
+                            Id = 20,
+                            CategoryId = 5,
                             Title = "Гнезда и гнездовые принадлежности"
                         },
                         new
                         {
-                            ID = 21,
-                            CategoryID = 6,
+                            Id = 21,
+                            CategoryId = 6,
                             Title = "Террариумы"
                         },
                         new
                         {
-                            ID = 22,
-                            CategoryID = 6,
+                            Id = 22,
+                            CategoryId = 6,
                             Title = "Корм для рептилий"
                         },
                         new
                         {
-                            ID = 23,
-                            CategoryID = 6,
+                            Id = 23,
+                            CategoryId = 6,
                             Title = "Освещение и обогрев для террариумов"
                         },
                         new
                         {
-                            ID = 24,
-                            CategoryID = 7,
+                            Id = 24,
+                            CategoryId = 7,
                             Title = "Мелкие животные"
                         },
                         new
                         {
-                            ID = 25,
-                            CategoryID = 7,
+                            Id = 25,
+                            CategoryId = 7,
                             Title = "Корм и аксессуары для экзотических животных"
                         },
                         new
                         {
-                            ID = 26,
-                            CategoryID = 8,
+                            Id = 26,
+                            CategoryId = 8,
                             Title = "Гигиенические средства"
                         },
                         new
                         {
-                            ID = 27,
-                            CategoryID = 8,
+                            Id = 27,
+                            CategoryId = 8,
                             Title = "Посуда и кормушки"
                         },
                         new
                         {
-                            ID = 28,
-                            CategoryID = 8,
+                            Id = 28,
+                            CategoryId = 8,
                             Title = "Лежанки и домики"
                         },
                         new
                         {
-                            ID = 29,
-                            CategoryID = 8,
+                            Id = 29,
+                            CategoryId = 8,
                             Title = "Одежда и аксессуары"
                         });
                 });
 
             modelBuilder.Entity("online_shop_backend.Models.Entities.UserDetail", b =>
                 {
-                    b.Property<long>("ID")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Address1")
                         .HasMaxLength(200)
@@ -903,7 +927,7 @@ namespace online_shop_backend.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
-                    b.Property<string>("ApplicationUserID")
+                    b.Property<string>("ApplicationUserId")
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
@@ -916,9 +940,9 @@ namespace online_shop_backend.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserID");
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("user_details", (string)null);
                 });
@@ -985,7 +1009,7 @@ namespace online_shop_backend.Migrations
                 {
                     b.HasOne("online_shop_backend.Models.Entities.Product", "Product")
                         .WithMany("Discounts")
-                        .HasForeignKey("ProductID")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -996,11 +1020,11 @@ namespace online_shop_backend.Migrations
                 {
                     b.HasOne("online_shop_backend.Models.Identity.ApplicationUser", "ApplicationUser")
                         .WithMany("Invoices")
-                        .HasForeignKey("ApplicationUserID");
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("online_shop_backend.Models.Entities.Order", "Order")
                         .WithMany("Invoices")
-                        .HasForeignKey("OrderID")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1013,13 +1037,13 @@ namespace online_shop_backend.Migrations
                 {
                     b.HasOne("online_shop_backend.Models.Entities.Invoice", "Invoice")
                         .WithMany("Details")
-                        .HasForeignKey("InvoiceID")
+                        .HasForeignKey("InvoiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("online_shop_backend.Models.Entities.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductID")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1032,11 +1056,11 @@ namespace online_shop_backend.Migrations
                 {
                     b.HasOne("online_shop_backend.Models.Identity.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("ApplicationUserID");
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("online_shop_backend.Models.Entities.ShippingMethod", "ShippingMethod")
                         .WithMany()
-                        .HasForeignKey("ShippingMethodID")
+                        .HasForeignKey("ShippingMethodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1049,13 +1073,13 @@ namespace online_shop_backend.Migrations
                 {
                     b.HasOne("online_shop_backend.Models.Entities.Order", "Order")
                         .WithMany("Details")
-                        .HasForeignKey("OrderID")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("online_shop_backend.Models.Entities.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductID")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1068,11 +1092,11 @@ namespace online_shop_backend.Migrations
                 {
                     b.HasOne("online_shop_backend.Models.Identity.ApplicationUser", "ApplicationUser")
                         .WithMany("PaymentMethods")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("ApplicationUserId1");
 
                     b.HasOne("online_shop_backend.Models.Entities.PaymentType", "PaymentType")
                         .WithMany("PaymentMethods")
-                        .HasForeignKey("PaymentTypeID")
+                        .HasForeignKey("PaymentTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1085,7 +1109,7 @@ namespace online_shop_backend.Migrations
                 {
                     b.HasOne("online_shop_backend.Models.Entities.Producer", "Producer")
                         .WithMany()
-                        .HasForeignKey("ProducerID")
+                        .HasForeignKey("ProducerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1096,19 +1120,19 @@ namespace online_shop_backend.Migrations
                 {
                     b.HasOne("online_shop_backend.Models.Entities.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryID")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("online_shop_backend.Models.Entities.Producer", "Producer")
                         .WithMany()
-                        .HasForeignKey("ProducerID")
+                        .HasForeignKey("ProducerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("online_shop_backend.Models.Entities.Subcategory", "Subcategory")
                         .WithMany()
-                        .HasForeignKey("SubcategoryID")
+                        .HasForeignKey("SubcategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1119,11 +1143,22 @@ namespace online_shop_backend.Migrations
                     b.Navigation("Subcategory");
                 });
 
+            modelBuilder.Entity("online_shop_backend.Models.Entities.ProductPicture", b =>
+                {
+                    b.HasOne("online_shop_backend.Models.Entities.Product", "Product")
+                        .WithMany("ProductPictures")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("online_shop_backend.Models.Entities.RefreshToken", b =>
                 {
                     b.HasOne("online_shop_backend.Models.Identity.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("ApplicationUserID");
+                        .HasForeignKey("ApplicationUserId");
 
                     b.Navigation("ApplicationUser");
                 });
@@ -1132,11 +1167,11 @@ namespace online_shop_backend.Migrations
                 {
                     b.HasOne("online_shop_backend.Models.Identity.ApplicationUser", "ApplicationUser")
                         .WithMany("Reviews")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("ApplicationUserId1");
 
                     b.HasOne("online_shop_backend.Models.Entities.Product", "Product")
                         .WithMany("Reviews")
-                        .HasForeignKey("ProductID")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1149,7 +1184,7 @@ namespace online_shop_backend.Migrations
                 {
                     b.HasOne("online_shop_backend.Models.Entities.Category", "Category")
                         .WithMany("Subcategories")
-                        .HasForeignKey("CategoryID")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1160,7 +1195,7 @@ namespace online_shop_backend.Migrations
                 {
                     b.HasOne("online_shop_backend.Models.Identity.ApplicationUser", "ApplicationUser")
                         .WithMany("Details")
-                        .HasForeignKey("ApplicationUserID");
+                        .HasForeignKey("ApplicationUserId");
 
                     b.Navigation("ApplicationUser");
                 });
@@ -1190,6 +1225,8 @@ namespace online_shop_backend.Migrations
             modelBuilder.Entity("online_shop_backend.Models.Entities.Product", b =>
                 {
                     b.Navigation("Discounts");
+
+                    b.Navigation("ProductPictures");
 
                     b.Navigation("Reviews");
                 });
