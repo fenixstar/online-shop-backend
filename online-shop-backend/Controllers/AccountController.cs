@@ -138,7 +138,7 @@ public class AccountController(UserManager<ApplicationUser> userManager,
                 {
                     Token = refreshToken,
                     ApplicationUserId = user.Id,
-                    ExpiryDate = DateTime.Now.AddDays(5)
+                    ExpiryDate = DateTime.Now.AddDays(30).ToUniversalTime()
                 });
 
             var jwt = await GenerateJwt(user);
