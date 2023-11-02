@@ -112,12 +112,15 @@ public class AccountController(UserManager<ApplicationUser> userManager,
 
         var result = await userManager.CreateAsync(userToAdd, user.Password);
 
-        if (result.Succeeded) await userManager.AddToRoleAsync(userToAdd, Constants.User);
+        if (result.Succeeded)
+        {
+            await userManager.AddToRoleAsync(userToAdd, Constants.User);
+            await mailService.SendEmailAsync(user.Email, user.Name, "Welcome to VetUniverse", "Welcome to VetUniverse");
+        }
 
-        await mailService.SendEmailAsync(user.Email, user.Name, "Welcome to VetUniverse", "Welcome to VetUniverse");
 
         return result.Succeeded
-            ? Ok(IdentityResult.Success)
+            ? Ok((IdentityResult.Success, userToAdd.Id))
             : BadRequest(IdentityResult.Failed((result.Errors as IdentityError[])!));
     }
 
@@ -128,7 +131,7 @@ public class AccountController(UserManager<ApplicationUser> userManager,
             return BadRequest("Username/password cannot be empty");
 
         var user = await userManager.FindByNameAsync(userDto.Username);
-
+        
         if (user != null && await userManager.CheckPasswordAsync(user, userDto.Password))
         {
             var refreshToken = TokenFactory.GenerateToken();
@@ -146,7 +149,7 @@ public class AccountController(UserManager<ApplicationUser> userManager,
             return Ok(new { jwt, refreshToken });
         }
 
-        return BadRequest("Error while logging in. Please try later.");
+        return Unauthorized("Invalid username/password");
     }
 
     [HttpPost("refresh")]
@@ -168,7 +171,7 @@ public class AccountController(UserManager<ApplicationUser> userManager,
         var secretKey = Encoding.ASCII.GetBytes(configuration["SecretKey"]);
 
         var claims = (await userManager.GetRolesAsync(user))
-            .Select(r => new Claim(ClaimTypes.Role, r));
+            .Select(r => new Claim("role", r));
 
         var token = new JwtSecurityToken(configuration["Issuer"], configuration["Issuer"],
             claims, null, DateTime.UtcNow.AddHours(6), new SigningCredentials(
