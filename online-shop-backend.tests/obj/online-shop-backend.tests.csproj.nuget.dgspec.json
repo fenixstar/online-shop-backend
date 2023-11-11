@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj": {}
+    "C:\\work\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj": {
+    "C:\\work\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj",
+        "projectUniqueName": "C:\\work\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj",
         "projectName": "online-shop-backend.tests",
-        "projectPath": "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj",
-        "packagesPath": "C:\\Users\\fenix\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend.tests\\obj\\",
+        "projectPath": "C:\\work\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj",
+        "packagesPath": "C:\\Users\\a.gavrikov\\.nuget\\packages\\",
+        "outputPath": "C:\\work\\online-shop-backend\\online-shop-backend.tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\fenix\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\a.gavrikov\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj": {
-                "projectPath": "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj"
+              "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj": {
+                "projectPath": "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj"
               }
             }
           }
@@ -87,17 +87,17 @@
         }
       }
     },
-    "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj": {
+    "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj",
+        "projectUniqueName": "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj",
         "projectName": "online-shop-backend",
-        "projectPath": "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj",
-        "packagesPath": "C:\\Users\\fenix\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fenix\\RiderProjects\\zoo-store\\online-shop-backend\\online-shop-backend\\obj\\",
+        "projectPath": "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj",
+        "packagesPath": "C:\\Users\\a.gavrikov\\.nuget\\packages\\",
+        "outputPath": "C:\\work\\online-shop-backend\\online-shop-backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\fenix\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\a.gavrikov\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -124,6 +124,10 @@
             "EASendMail": {
               "target": "Package",
               "version": "[7.9.2, )"
+            },
+            "JWT.Extensions.AspNetCore": {
+              "target": "Package",
+              "version": "[10.1.1, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using online_shop_backend.Models.DTO;
 using online_shop_backend.Models.Entities;
 using online_shop_backend.Repositories.Interfaces;
 
@@ -84,6 +85,11 @@ namespace online_shop_backend.tests.Mocks
         public void AddCategory(Category category)
         {
             Categories.Add(category);
+        }
+
+        public void AddCategory(CategoryDto category)
+        {
+            throw new System.NotImplementedException();
         }
 
         public void RemoveCategory(Category category)

@@ -69,22 +69,24 @@ public class AccountController(UserManager<ApplicationUser> userManager,
         var user = await userManager.FindByNameAsync(account.User.Username);
         var details = userDetailRepository.GetDetailsForUser(user.Id).ToList();
 
-        if (account.User.Email != user.Email) user.Email = account.User.Email;
+        user.Email = account.User.Email;
 
         if (userManager.PasswordHasher.HashPassword(user, account.User.Password) != user.PasswordHash)
+        {
             await userManager.ChangePasswordAsync(user,
                 account.User.PasswordConfirm,
                 account.User.Password);
+        }
 
-        if (account.User.Name != details[0].Name) details[0].Name = account.User.Name;
+        details[0].Name = account.User.Name;
 
-        if (account.User.Surname != details[0].Surname) details[0].Surname = account.User.Surname;
+        details[0].Surname = account.User.Surname;
 
-        if (account.Address.Address1 != details[0].Address1) details[0].Address1 = account.Address.Address1;
+        details[0].Address1 = account.Address.Address1;
 
-        if (account.Address.Address2 != details[0].Address2) details[0].Address2 = account.Address.Address2;
+        details[0].Address2 = account.Address.Address2;
 
-        if (account.Address.Address2 != details[0].Address2) details[0].Address2 = account.Address.Address2;
+        details[0].Address2 = account.Address.Address2;
 
         user.Details = details;
 
@@ -118,7 +120,6 @@ public class AccountController(UserManager<ApplicationUser> userManager,
             await mailService.SendEmailAsync(user.Email, user.Name, "Welcome to VetUniverse", "Welcome to VetUniverse");
         }
 
-
         return result.Succeeded
             ? Ok((IdentityResult.Success, userToAdd.Id))
             : BadRequest(IdentityResult.Failed((result.Errors as IdentityError[])!));
@@ -131,7 +132,7 @@ public class AccountController(UserManager<ApplicationUser> userManager,
             return BadRequest("Username/password cannot be empty");
 
         var user = await userManager.FindByNameAsync(userDto.Username);
-        
+
         if (user != null && await userManager.CheckPasswordAsync(user, userDto.Password))
         {
             var refreshToken = TokenFactory.GenerateToken();
