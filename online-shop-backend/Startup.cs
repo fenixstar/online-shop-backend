@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using online_shop_backend.Models.Identity;
 using online_shop_backend.Repositories.Implementations;
@@ -23,7 +24,7 @@ public class Startup(IConfiguration configuration)
 {
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddSwaggerGen();
+        services.AddAutoMapper(typeof(AppMappingProfile));
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseNpgsql(configuration["ConnectionStrings:OnlineShopDatabase"]));
 
@@ -46,12 +47,11 @@ public class Startup(IConfiguration configuration)
         services.AddTransient<IMailService, MailService>();
         services.AddTransient<IPictureService, PictureService>();
 
-        
+
         services.AddTransient<TokenFactory>();
 
         services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
-
         services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -77,6 +77,34 @@ public class Startup(IConfiguration configuration)
         services.AddControllers()
             .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+
+        services.AddSwaggerGen(option =>
+        {
+            option.SwaggerDoc("v1", new OpenApiInfo { Title = "VetUniverse", Version = "v1" });
+            option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                In = ParameterLocation.Header,
+                Description = "Please enter a valid token",
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                BearerFormat = "JWT",
+                Scheme = "Bearer"
+            });
+            option.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    Array.Empty<string>()
+                }
+            });
+        });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

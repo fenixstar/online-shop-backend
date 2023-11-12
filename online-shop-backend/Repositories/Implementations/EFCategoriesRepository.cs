@@ -12,7 +12,7 @@ public class EfCategoriesRepository(ApplicationDbContext context) : ICategoriesR
 {
     public void AddCategory(CategoryDto category)
     {
-        context.Categories.Add(new Category { Title = category.Name });
+        context.Categories.Add(new Category { Title = category.Title });
         context.SaveChanges();
     }
 
@@ -35,7 +35,10 @@ public class EfCategoriesRepository(ApplicationDbContext context) : ICategoriesR
 
     public ICollection<Category> GetAllCategories()
     {
-        return context.Categories.Include(x => x.Subcategories).ToList();
+        return context.Categories
+            .Include(x => x.Subcategories)
+            .Where(x => x.IsActual)
+            .ToList();
     }
 
     public ICollection<Subcategory> GetSubcategoriesForCategory(int id)

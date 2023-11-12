@@ -117,6 +117,8 @@ public class AccountController(UserManager<ApplicationUser> userManager,
         if (result.Succeeded)
         {
             await userManager.AddToRoleAsync(userToAdd, Constants.User);
+            await userManager.AddToRoleAsync(userToAdd, Constants.Moderator);
+            await userManager.AddToRoleAsync(userToAdd, Constants.Admin);
             await mailService.SendEmailAsync(user.Email, user.Name, "Welcome to VetUniverse", "Welcome to VetUniverse");
         }
 

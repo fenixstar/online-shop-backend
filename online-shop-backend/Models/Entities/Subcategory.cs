@@ -11,4 +11,10 @@ public class Subcategory
     [Required] [StringLength(200)] public string Title { get; set; }
 
     public Category Category { get; set; }
+    
+    [Required]
+    public string Icon { get; set; }
+    
+    [Required]
+    public bool IsActual { get; set; }
 }

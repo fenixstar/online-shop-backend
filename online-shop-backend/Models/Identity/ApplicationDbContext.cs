@@ -47,49 +47,85 @@ public class ApplicationDbContext : IdentityDbContext
         modelBuilder.Entity<Category>()
             .ToTable("categories")
             .HasData(
-                new Category { Id = 1, Title = "Собаки" },
-                new Category { Id = 2, Title = "Кошки" },
-                new Category { Id = 3, Title = "Грызуны" },
-                new Category { Id = 4, Title = "Рыбы" },
-                new Category { Id = 5, Title = "Птицы" },
-                new Category { Id = 6, Title = "Риптилии" },
-                new Category { Id = 7, Title = "Другие питомцы" },
-                new Category { Id = 8, Title = "Уход и аксессуары" }
+                new Category { Id = 1, Title = "Собаки", Icon = "mdi-dog", IsActual = true },
+                new Category { Id = 2, Title = "Кошки", Icon = "mdi-cat", IsActual = true },
+                new Category { Id = 3, Title = "Грызуны", Icon = "mdi-rodent", IsActual = true },
+                new Category { Id = 4, Title = "Рыбы", Icon = "mdi-fish", IsActual = true },
+                new Category { Id = 5, Title = "Птицы", Icon = "mdi-bird", IsActual = true },
+                new Category { Id = 6, Title = "Риптилии", Icon = "mdi-snake", IsActual = true },
+                new Category { Id = 7, Title = "Другие питомцы", Icon = "mdi-horse", IsActual = true },
+                new Category { Id = 8, Title = "Уход и аксессуары", Icon = "mdi-paw", IsActual = true }
             );
 
 
         modelBuilder.Entity<Subcategory>()
             .ToTable("subcategories")
             .HasData(
-                new Subcategory { Id = 1, CategoryId = 1, Title = "Корм для собак" },
-                new Subcategory { Id = 2, CategoryId = 1, Title = "Игрушки для собак" },
-                new Subcategory { Id = 3, CategoryId = 1, Title = "Ошейники и поводкик" },
-                new Subcategory { Id = 4, CategoryId = 1, Title = "Туалеты" },
-                new Subcategory { Id = 5, CategoryId = 1, Title = "Миски и поилки" },
-                new Subcategory { Id = 6, CategoryId = 2, Title = "Корм для кошек" },
-                new Subcategory { Id = 7, CategoryId = 2, Title = "Игрушки для кошек" },
-                new Subcategory { Id = 8, CategoryId = 2, Title = "Ошейники и поводки" },
-                new Subcategory { Id = 9, CategoryId = 2, Title = "Когтеточки" },
-                new Subcategory { Id = 10, CategoryId = 2, Title = "Туалеты" },
-                new Subcategory { Id = 11, CategoryId = 2, Title = "Миски и поилки" },
-                new Subcategory { Id = 12, CategoryId = 3, Title = "Корм для грызунов" },
-                new Subcategory { Id = 13, CategoryId = 3, Title = "Вольеры и клетки" },
-                new Subcategory { Id = 14, CategoryId = 3, Title = "Игрушки для грызунов" },
-                new Subcategory { Id = 15, CategoryId = 3, Title = "Миски и поилки" },
-                new Subcategory { Id = 16, CategoryId = 4, Title = "Корм для рыбок" },
-                new Subcategory { Id = 17, CategoryId = 4, Title = "Прочая переферия для рыбок" },
-                new Subcategory { Id = 18, CategoryId = 5, Title = "Вольеры и клетки" },
-                new Subcategory { Id = 19, CategoryId = 5, Title = "Корм для птиц" },
-                new Subcategory { Id = 20, CategoryId = 5, Title = "Гнезда и гнездовые принадлежности" },
-                new Subcategory { Id = 21, CategoryId = 6, Title = "Террариумы" },
-                new Subcategory { Id = 22, CategoryId = 6, Title = "Корм для рептилий" },
-                new Subcategory { Id = 23, CategoryId = 6, Title = "Освещение и обогрев для террариумов" },
-                new Subcategory { Id = 24, CategoryId = 7, Title = "Мелкие животные" },
-                new Subcategory { Id = 25, CategoryId = 7, Title = "Корм и аксессуары для экзотических животных" },
-                new Subcategory { Id = 26, CategoryId = 8, Title = "Гигиенические средства" },
-                new Subcategory { Id = 27, CategoryId = 8, Title = "Посуда и кормушки" },
-                new Subcategory { Id = 28, CategoryId = 8, Title = "Лежанки и домики" },
-                new Subcategory { Id = 29, CategoryId = 8, Title = "Одежда и аксессуары" });
+                new Subcategory
+                    { Id = 1, CategoryId = 1, Title = "Корм для собак", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 2, CategoryId = 1, Title = "Игрушки для собак", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 3, CategoryId = 1, Title = "Ошейники и поводкик", Icon = "mdi-paw", IsActual = true },
+                new Subcategory { Id = 4, CategoryId = 1, Title = "Туалеты", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 5, CategoryId = 1, Title = "Миски и поилки", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 6, CategoryId = 2, Title = "Корм для кошек", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 7, CategoryId = 2, Title = "Игрушки для кошек", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 8, CategoryId = 2, Title = "Ошейники и поводки", Icon = "mdi-paw", IsActual = true },
+                new Subcategory { Id = 9, CategoryId = 2, Title = "Когтеточки", Icon = "mdi-paw", IsActual = true },
+                new Subcategory { Id = 10, CategoryId = 2, Title = "Туалеты", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 11, CategoryId = 2, Title = "Миски и поилки", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 12, CategoryId = 3, Title = "Корм для грызунов", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 13, CategoryId = 3, Title = "Вольеры и клетки", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 14, CategoryId = 3, Title = "Игрушки для грызунов", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 15, CategoryId = 3, Title = "Миски и поилки", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 16, CategoryId = 4, Title = "Корм для рыбок", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                {
+                    Id = 17, CategoryId = 4, Title = "Прочая переферия для рыбок", Icon = "mdi-paw", IsActual = true
+                },
+                new Subcategory
+                    { Id = 18, CategoryId = 5, Title = "Вольеры и клетки", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 19, CategoryId = 5, Title = "Корм для птиц", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                {
+                    Id = 20, CategoryId = 5, Title = "Гнезда и гнездовые принадлежности", Icon = "mdi-paw",
+                    IsActual = true
+                },
+                new Subcategory { Id = 21, CategoryId = 6, Title = "Террариумы", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 22, CategoryId = 6, Title = "Корм для рептилий", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                {
+                    Id = 23, CategoryId = 6, Title = "Освещение и обогрев для террариумов", Icon = "mdi-paw",
+                    IsActual = true
+                },
+                new Subcategory
+                    { Id = 24, CategoryId = 7, Title = "Мелкие животные", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                {
+                    Id = 25, CategoryId = 7, Title = "Корм и аксессуары для экзотических животных", Icon = "mdi-paw",
+                    IsActual = true
+                },
+                new Subcategory
+                    { Id = 26, CategoryId = 8, Title = "Гигиенические средства", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 27, CategoryId = 8, Title = "Посуда и кормушки", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 28, CategoryId = 8, Title = "Лежанки и домики", Icon = "mdi-paw", IsActual = true },
+                new Subcategory
+                    { Id = 29, CategoryId = 8, Title = "Одежда и аксессуары", Icon = "mdi-bottle-tonic-plus", IsActual = true });
 
         modelBuilder.Entity<Subcategory>()
             .HasOne(x => x.Category)

@@ -1,14 +1,16 @@
 using System.Collections.Generic;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using online_shop_backend.Models.DTO;
 using online_shop_backend.Models.Entities;
 using online_shop_backend.Repositories.Interfaces;
+using online_shop_backend.Utils;
 
 namespace online_shop_backend.Controllers;
 
 [Route("/api/category")]
-public class CategoryController(ICategoriesRepository categoriesRepository) : Controller
+public class CategoryController(ICategoriesRepository categoriesRepository, IMapperBase mapper) : Controller
 {
     [HttpGet]
     public ICollection<Category> Index()
@@ -29,19 +31,27 @@ public class CategoryController(ICategoriesRepository categoriesRepository) : Co
         return result;
     }
 
-    [Authorize]
     [HttpPost]
+    [Authorize(Roles = Constants.Moderator)]
     public IActionResult Create([FromBody] CategoryDto category)
     {
         categoriesRepository.AddCategory(category);
         return Ok();
     }
 
-    [Authorize]
     [HttpDelete("{id:required}")]
+    [Authorize(Roles = Constants.Moderator)]
     public IActionResult Delete(int id)
     {
         categoriesRepository.RemoveCategory(categoriesRepository.GetCategory(id));
+        return Ok();
+    }
+
+    [HttpPut]
+    [Authorize(Roles = Constants.Moderator)]
+    public IActionResult Update([FromBody] CategoryDto category)
+    {
+        categoriesRepository.UpdateCategory(mapper.Map<Category>(category));
         return Ok();
     }
 }
