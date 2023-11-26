@@ -10,7 +10,7 @@ using online_shop_backend.Utils;
 namespace online_shop_backend.Controllers;
 
 [Route("/api/category")]
-public class CategoryController(ICategoriesRepository categoriesRepository, IMapperBase mapper) : Controller
+public class CategoryController(ICategoriesRepository categoriesRepository, IMapper mapper) : Controller
 {
     [HttpGet]
     public ICollection<Category> Index()
