@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\work\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj": {}
+    "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend.tests/online-shop-backend.tests.csproj": {}
   },
   "projects": {
-    "C:\\work\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj": {
+    "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend.tests/online-shop-backend.tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\work\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj",
+        "projectUniqueName": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend.tests/online-shop-backend.tests.csproj",
         "projectName": "online-shop-backend.tests",
-        "projectPath": "C:\\work\\online-shop-backend\\online-shop-backend.tests\\online-shop-backend.tests.csproj",
-        "packagesPath": "C:\\Users\\a.gavrikov\\.nuget\\packages\\",
-        "outputPath": "C:\\work\\online-shop-backend\\online-shop-backend.tests\\obj\\",
+        "projectPath": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend.tests/online-shop-backend.tests.csproj",
+        "packagesPath": "/Users/antongavrikov/.nuget/packages/",
+        "outputPath": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend.tests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\a.gavrikov\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/antongavrikov/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj": {
-                "projectPath": "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj"
+              "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/online-shop-backend.csproj": {
+                "projectPath": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/online-shop-backend.csproj"
               }
             }
           }
@@ -44,27 +44,31 @@
           "dependencies": {
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[16.7.0-preview-20200519-01, )"
+              "version": "[17.9.0, )"
             },
             "Moq": {
               "target": "Package",
-              "version": "[4.14.4, )"
+              "version": "[4.20.70, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[12.0.3, )"
+              "version": "[13.0.3, )"
             },
             "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[1.3.0, )"
+              "version": "[6.0.2, )"
             },
             "xunit": {
               "target": "Package",
-              "version": "[2.4.1, )"
+              "version": "[2.7.0, )"
             },
             "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[2.4.2, )"
+              "version": "[2.5.7, )"
             }
           },
           "imports": [
@@ -83,21 +87,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.1.23463.5/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/antongavrikov/.dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj": {
+    "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/online-shop-backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj",
+        "projectUniqueName": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/online-shop-backend.csproj",
         "projectName": "online-shop-backend",
-        "projectPath": "C:\\work\\online-shop-backend\\online-shop-backend\\online-shop-backend.csproj",
-        "packagesPath": "C:\\Users\\a.gavrikov\\.nuget\\packages\\",
-        "outputPath": "C:\\work\\online-shop-backend\\online-shop-backend\\obj\\",
+        "projectPath": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/online-shop-backend.csproj",
+        "packagesPath": "/Users/antongavrikov/.nuget/packages/",
+        "outputPath": "/Users/antongavrikov/RiderProjects/online-shop-backend/online-shop-backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\a.gavrikov\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/antongavrikov/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -123,15 +127,11 @@
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[12.0.1, )"
-            },
-            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
-              "target": "Package",
-              "version": "[12.0.1, )"
+              "version": "[13.0.1, )"
             },
             "EASendMail": {
               "target": "Package",
-              "version": "[7.9.2, )"
+              "version": "[7.9.2.1, )"
             },
             "JWT.Extensions.AspNetCore": {
               "target": "Package",
@@ -139,25 +139,25 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[8.0.0-rc.1.23421.29, )"
+              "version": "[8.0.3, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.0-rc.1.23421.29, )"
+              "version": "[8.0.3, )"
             },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
-              "version": "[8.0.0-rc.1.23421.29, )"
+              "version": "[8.0.3, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.0-rc.1.23419.6, )"
+              "version": "[8.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.0-rc.1.23419.6, )"
+              "version": "[8.0.3, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -165,7 +165,7 @@
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[8.0.0-rc.1, )"
+              "version": "[8.0.2, )"
             },
             "Swashbuckle.AspNetCore.Swagger": {
               "target": "Package",
@@ -181,7 +181,7 @@
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[7.5.1, )"
             }
           },
           "imports": [
@@ -203,7 +203,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.1.23463.5/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/antongavrikov/.dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
