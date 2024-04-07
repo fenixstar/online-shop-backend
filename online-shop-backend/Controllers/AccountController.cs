@@ -21,7 +21,8 @@ namespace online_shop_backend.Controllers;
 
 [Route("/api/account")]
 [AllowAnonymous]
-public class AccountController(UserManager<ApplicationUser> userManager,
+public class AccountController(
+    UserManager<ApplicationUser> userManager,
         IRefreshTokenRepository refreshTokenRepository,
         IConfiguration configuration,
         IUserDetailRepository userDetailRepository,
@@ -48,7 +49,7 @@ public class AccountController(UserManager<ApplicationUser> userManager,
     {
         var user = await userManager.FindByNameAsync(address.Username);
 
-        var userDetails = userDetailRepository.GetDetailsForUser(user.Id).ToList();
+        var userDetails = userDetailRepository.GetDetailsForUser(user?.Id).ToList();
 
         if (userDetails.Count > 0 && !string.IsNullOrEmpty(userDetails[0].Address1))
             return BadRequest(new { message = "Address already set" });
@@ -67,7 +68,7 @@ public class AccountController(UserManager<ApplicationUser> userManager,
     public async Task<IActionResult> UpdateAccount([FromBody] AccountPageDto account)
     {
         var user = await userManager.FindByNameAsync(account.User.Username);
-        var details = userDetailRepository.GetDetailsForUser(user.Id).ToList();
+        var details = userDetailRepository.GetDetailsForUser(user?.Id).ToList();
 
         user.Email = account.User.Email;
 
@@ -171,7 +172,7 @@ public class AccountController(UserManager<ApplicationUser> userManager,
 
     private async Task<string> GenerateJwt(ApplicationUser user)
     {
-        var secretKey = Encoding.ASCII.GetBytes(configuration["SecretKey"]);
+        var secretKey = Encoding.ASCII.GetBytes(configuration["SecretKey"]!);
 
         var claims = (await userManager.GetRolesAsync(user))
             .Select(r => new Claim("role", r));
